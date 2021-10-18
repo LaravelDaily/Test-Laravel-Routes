@@ -25,7 +25,11 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     // Put one code line here below
     
     Route::prefix('/v1')->group(function () {
-        Route::resource('tasks', \App\Http\Controllers\TaskController::class);
+        Route::resource('tasks', \App\Http\Controllers\TaskController::class); 
+        // Since it says assign 5 resources instead of all 7 included in the Controller
+        // We can use except() to exclude any method we want (I just didn't know which to exclude)
+        // Example:
+        // Route::resource('tasks', \App\Http\Controllers\TaskController::class)->except(['index', 'edit']);
     });
     
 });
