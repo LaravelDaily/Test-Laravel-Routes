@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,17 +48,16 @@ Route::middleware('auth')->group(function () {
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
     Route::prefix('app')->group(function () {
-
+        // Tasks inside that /app group:
+        // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
+        // Assign the route name "dashboard"
+        // Put one Route Group code line here below
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
     });
 });
 
 
-        // Tasks inside that /app group:
 
-
-        // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
-        // Assign the route name "dashboard"
-        // Put one Route Group code line here below
 
 
         // Task 8: Manage tasks with URL /app/tasks/***.
