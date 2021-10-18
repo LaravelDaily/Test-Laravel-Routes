@@ -89,8 +89,8 @@ Route::group(['middelware' => 'auth'], function () {
                 Route::resource('/tasks', DashboardController::class);
                 
                 Route::group(['prefix' => '/admin', 'middleware' => ['is_admin']], function () {
-                     Route::get('/dashboard', [Admin/DashboardController::class, 'index'])->name('dashboard');
-                     Route::get('/stats', [Admin/StatsController::class, 'index']);
+                     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+                     Route::get('/stats', [App\Http\Controllers\Admin\StatsController::class, 'index']);
                 });
             });
         });
