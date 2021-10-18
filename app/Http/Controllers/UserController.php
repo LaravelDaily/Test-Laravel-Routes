@@ -6,6 +6,7 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+
     public function show($name)
     {
         $user = User::where('name', $name)->first();
@@ -15,4 +16,5 @@ class UserController extends Controller
 
         return view('users.show', compact('user'));
     }
+
 }
