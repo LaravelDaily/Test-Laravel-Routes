@@ -23,7 +23,9 @@ Your task is to make those tests pass.
 If you want to submit your solution, you should make a Pull Request to the `main` branch.
 It will automatically run the tests via Github Actions and will show you/me if the test pass.
 
-This task is mostly self-served, so I'm not planning review the Pull Requests. This test is for yourselves to assess your skills, the automated tests will be your answer if you passed the test :)
+If you don't know how to make a Pull Request, [here's my video with instructions](https://www.youtube.com/watch?v=vEcT6JIFji0).
+
+This task is mostly self-served, so I'm not planning review or merge the Pull Requests. This test is for yourselves to assess your skills, the automated tests will be your answer if you passed the test :)
 
 
 ## Questions / Problems?
