@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth'], function (Router $router) {
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-    $router->group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'is_admin'], function (Router $router) {
+    $router->group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'is_admin'], function (Router $router) {
 
         // Tasks inside that /app group:
 
