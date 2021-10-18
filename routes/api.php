@@ -20,6 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     // Task 12: Manage tasks with endpoint /api/v1/tasks/*****.
-    Route::apiResource('api/v1/tasks', App\Http\Controllers\Api\V1\TaskController::class);
+    Route::apiResource('v1/tasks', App\Http\Controllers\Api\V1\TaskController::class);
 
 });
