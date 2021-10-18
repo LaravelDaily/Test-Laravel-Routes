@@ -23,7 +23,7 @@ class RoutesTest extends TestCase
     public function test_user_page_existing_user_found()
     {
         $user = User::factory()->create();
-        $response = $this->get('/user/' . $user->name);
+        $response = $this->withoutExceptionHandling()->get('/user/' . $user->name);
 
         $response->assertOk();
         $response->assertViewIs('users.show');
@@ -37,7 +37,7 @@ class RoutesTest extends TestCase
 
     public function test_about_page_is_loaded()
     {
-        $response = $this->get('/about');
+        $response = $this->withoutExceptionHandling()->get('/about');
 
         $response->assertViewIs('pages.about');
     }
