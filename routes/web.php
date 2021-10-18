@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
     // Task 9: /admin group within a group
     Route::prefix('admin')->group(function () {
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
-        Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class])->name('admin.dashboard');
+        Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class]);
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         Route::resource('stats', App\Http\Controllers\Admin\StatsController::class);
     });
