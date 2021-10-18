@@ -18,18 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'auth:sanctum'], function() {
-    // Task 12: Manage tasks with endpoint /api/v1/tasks/*****.
-    // Keep in mind that prefix should be /api/v1.
-    // Add ONE line to assign 5 resource routes to TaskController
-    // Put one code line here below
-    
-    Route::prefix('/v1')->group(function () {
-        Route::resource('tasks', \App\Http\Controllers\TaskController::class); 
-        // Since it says assign 5 resources instead of all 7 included in the Controller
-        // We can use except() to exclude any method we want (I just didn't know which to exclude)
-        // Example:
-        // Route::resource('tasks', \App\Http\Controllers\TaskController::class)->except(['index', 'edit']);
-    });
-    
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1'], function() {
+
+    Route::apiResource('tasks', \App\Http\Controllers\Api\V1\TaskController::class);
+
 });
