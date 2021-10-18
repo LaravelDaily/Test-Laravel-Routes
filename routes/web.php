@@ -5,7 +5,6 @@ use App\Http\Controllers\Api\V1\TaskController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,29 +59,17 @@ Route::middleware('auth')->group(function () {
         Route::resource('/tasks', TaskController::class);
         // End of the /app Route Group
     });
-    
-    Route::prefix('admin')->group(function () {
-        // Task 9: /admin group within a group
-        // Add a group for routes with URL prefix "admin"
-        // Assign middleware called "is_admin" to them
-        // Put one Route Group code line here below
-    })->middleware('is_admin');
-});
-
-
-
-
-
-
-
-
-
+    // Task 9: /admin group within a group
+    // Add a group for routes with URL prefix "admin"
+    // Assign middleware called "is_admin" to them
+    // Put one Route Group code line here below
+    Route::middleware('is_admin')->prefix('admin')->group(function () {
         // Tasks inside that /app group:
-
-
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-
+        Route::get('/dashboard', Admin\DashboardController::class);
+    });
+});    
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
