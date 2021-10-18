@@ -5,12 +5,13 @@ namespace Tests\Feature;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class RoutesTest extends TestCase
 {
-    use RefreshDatabase;
+    use LazilyRefreshDatabase;
 
     public function test_home_screen_shows_welcome()
     {
@@ -38,7 +39,7 @@ class RoutesTest extends TestCase
     public function test_about_page_is_loaded()
     {
         $response = $this->get('/about');
-
+    
         $response->assertViewIs('pages.about');
     }
 
