@@ -51,6 +51,12 @@ class RoutesTest extends TestCase
         $response->assertRedirect('/login');
     }
 
+    public function test_log_in_redirect()
+    {
+        $response = $this->get('/log-in');
+
+        $response->assertRedirect('/login');
+    }
 
     public function test_task_crud_is_working()
     {
