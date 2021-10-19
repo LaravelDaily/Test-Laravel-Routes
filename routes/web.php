@@ -87,15 +87,15 @@ Route::get('/log-in', fn() => redirect('login'));
 
 
     // End of the /admin Route Group
+    Route::group(['middleware'=>'auth'], function(){
+        Route::group(['prefix'=>'admin', 'middleware'=>'is_admin'], function(){
+            Route::get('dashboard', DashboardController::class);
+            Route::get('stats', StatsController::class);
+        });
+    });
 
 // End of the main Authenticated Route Group
 
-Route::group(['middleware'=>'auth'], function(){
-    Route::group(['prefix'=>'admin', 'middleware'=>'is_admin'], function(){
-        Route::get('dashboard', DashboardController::class);
-        Route::get('stats', StatsController::class);
-    });
-});
 // One more task is in routes/api.php
 
 require __DIR__.'/auth.php';
