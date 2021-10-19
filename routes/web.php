@@ -34,14 +34,12 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // Also, assign the route name "about"
 // Put one code line here below
 
-Route::get('about', function(){
-    return view('pages.about');
-})->name('about');
+Route::get('/about', fn() => view('pages.about'))->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
 
-Route::redirect('log-in', 'login');
+Route::get('/log-in', fn() => redirect('login'));
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
@@ -92,9 +90,11 @@ Route::redirect('log-in', 'login');
 
 // End of the main Authenticated Route Group
 
-Route::group(['middleware'=>['auth', 'is_admin'], 'prefix'=>'admin'], function(){
-    Route::get('dashboard', DashboardController::class);
-    Route::get('stats', StatsController::class);
+Route::group(['middleware'=>'auth'], function(){
+    Route::group(['prefix'=>'admin', 'middleware'=>'is_admin'], function(){
+        Route::get('dashboard', DashboardController::class);
+        Route::get('stats', StatsController::class);
+    });
 });
 // One more task is in routes/api.php
 
