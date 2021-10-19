@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 
-Route::get('/user/{name}', [App\Http\Controllers\UserController::class, 'show'])->name(user.show);
+Route::get('/user/{name}', [App\Http\Controllers\UserController::class, 'show']);
 
 Route::view('/about', 'pages/about')->name('about');
 
