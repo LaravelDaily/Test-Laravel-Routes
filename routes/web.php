@@ -66,7 +66,7 @@ Route::redirect('log-in', 'login');
         // Put one code line here below
 
     // End of the /app Route Group
-    Route::prefix('app')->middleware('auth')->group(function(){
+    Route::group(['middleware'=>'auth', 'prefix'=>'app'], function(){
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('task', TaskController::class);
     });
@@ -91,7 +91,8 @@ Route::redirect('log-in', 'login');
     // End of the /admin Route Group
 
 // End of the main Authenticated Route Group
-Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function(){
+
+Route::group(['middleware'=>['auth', 'is_admin'], 'prefix'=>'admin'], function(){
     Route::get('dashboard', DashboardController::class);
     Route::get('stats', StatsController::class);
 });
