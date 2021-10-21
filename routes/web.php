@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,23 +23,20 @@ Route::get('/',[HomeController::class,'index']);
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
-Route::get('/user/{name}',[UserController::class,'show'])
+Route::get('/user/{name}',[UserController::class,'show']);
 
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-    Route::get('/about',function(){
-    return view('pages.about');
-    });
+    Route::view('/about', 'pages.about')->name('about');
+    
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::get('/log-in',function(){
-return redirect('login');
-});
+Route::redirect('log-in', 'login');
 
 
 // Task 5: group the following route sentences below in Route::group()
@@ -63,14 +62,14 @@ Route::group(['middleware'=>'auth'],function(){
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('/dashboard',DashboardController)->name('dashboard');
+        Route::get('/dashboard',DashboardController::class)->name('dashboard');
   
 
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-        Route::resource('/tasks',TaskController);
+        Route::resource('/tasks',TaskController::class);
    
 
    });  // End of the /app Route Group
