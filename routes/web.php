@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\StatsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
+
+
 
 
 
