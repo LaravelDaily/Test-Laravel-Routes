@@ -28,22 +28,18 @@ Route::get('/user/{name}', [App\Http\Controllers\UserController::class, 'show'])
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-Route::get('/about', function() {
-    return view('pages.about');
-})->name('about');
+Route::view('/about', 'pages.about')->name('about');
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::get('log-in', function() {
-   return redirect()->route('login');
-});
+Route::redirect('log-in', 'login');
 
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::middleware(['auth'])->group(function () {
+Route::middleware('auth')->group(function () {
 
 
     // Tasks inside that Authenticated group:
@@ -59,7 +55,7 @@ Route::middleware(['auth'])->group(function () {
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('dashboard', App\Http\Controllers\DashboardController::class);
+        Route::get('dashboard', App\Http\Controllers\DashboardController::class)->name('dashboard');
 
 
         // Task 8: Manage tasks with URL /app/tasks/***.
@@ -82,12 +78,12 @@ Route::middleware(['auth'])->group(function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('dashboard', App\Http\Controllers\Admin\DashboardController::class)->name('dashboard');
+        Route::get('dashboard', App\Http\Controllers\Admin\DashboardController::class);
 
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('stats', App\Http\Controllers\Admin\StatsController::class)->name('stats');
+        Route::get('stats', App\Http\Controllers\Admin\StatsController::class);
 
 
     // End of the /admin Route Group
