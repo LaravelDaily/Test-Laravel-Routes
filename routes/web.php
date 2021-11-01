@@ -52,8 +52,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::group(['prefix' => 'admin', 'middleware' => ['is_admin']], function(){
-        Route::get('/dashboard', 'Admin/DashboardController::class');
-        Route::get('/stats', 'Admin/StatsController::class');
+        Route::get('/dashboard', \App\Http\Controllers\Admin\DashboardController::class);
+        Route::get('/stats', \App\Http\Controllers\Admin\StatsController::class);
     });
 });
 
