@@ -47,7 +47,7 @@ Route::redirect('/log-in', '/login');
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('app')->group(function () {
-        Route::get('/dashboard', 'DashboardController')->name('dashboard');
+        Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
         Route::resource('tasks', TaskController::class);
     });
 
