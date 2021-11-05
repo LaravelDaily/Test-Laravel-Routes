@@ -28,8 +28,8 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // Also, assign the route name "about"
 // Put one code line here below
 Route::get('/about',function(){
-        return views('pages/about');
-    });
+        return view('pages/about');
+   });
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
