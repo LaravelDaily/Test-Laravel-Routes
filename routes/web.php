@@ -32,10 +32,15 @@ Route::get('/user/{name}', [UserController::class, 'show']);
     })->name('About');
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
- Route::get('log-in',function(){
-       $url = route('login');
+  Route::get('/app/dashboard',function(){
+       $url = route('/login');
         return url;
     });
+     Route::get('/app/tasks',function(){
+       $url = route('/login');
+        return url;
+    });
+
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
