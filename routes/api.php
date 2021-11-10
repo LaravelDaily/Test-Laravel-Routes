@@ -26,5 +26,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group([
     'prefix' => 'v1',
 ], function () {
-    Route::resource('tasks', TaskController::class);
+    Route::apiResource('tasks', TaskController::class);
 });
