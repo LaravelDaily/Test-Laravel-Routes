@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
@@ -40,11 +42,10 @@ Route::view('about', 'pages.about')->name('about');
 // Put one code line here below
 Route::middleware('auth')
     ->prefix('app')
-    ->group(function(){
+    ->group(function () {
         Route::get('dashboard', DashboardController::class);
         Route::resource('tasks', TaskController::class);
     });
-
 
 
 // Task 5: group the following route sentences below in Route::group()
@@ -79,6 +80,12 @@ Route::middleware('auth')
 
 
 // Tasks inside that /admin group:
+Route::prefix('admin')
+    ->middleware(['auth', 'is_admin'])
+    ->group(function () {
+        Route::get('dashboard', AdminDashboardController::class);
+        Route::get('stats', StatsController::class);
+    });
 
 
 // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
