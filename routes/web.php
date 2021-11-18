@@ -28,7 +28,6 @@ Route::get('/', [HomeController::class, 'index']);
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
 Route::get('user/{name}', [UserController::class, 'show']);
-Route::get('shshs', [HomeController::class, 'index'])->name('dashboard');
 
 
 // Task 3: point the GET URL "/about" to the view
@@ -83,7 +82,7 @@ Route::middleware('auth')
 Route::prefix('admin')
     ->middleware(['auth', 'is_admin'])
     ->group(function () {
-        Route::get('dashboard', AdminDashboardController::class);
+        Route::get('dashboard', AdminDashboardController::class)->name('dashboard');
         Route::get('stats', StatsController::class);
     });
 
