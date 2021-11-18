@@ -29,11 +29,11 @@ class RoutesTest extends TestCase
     //     $response->assertViewIs('users.show');
     // }
 
-    // public function test_user_page_nonexisting_user_not_found()
-    // {
-    //     $response = $this->get('/user/sometotallynonexistinguser');
-    //     $response->assertViewIs('users.notfound');
-    // }
+    public function test_user_page_nonexisting_user_not_found()
+    {
+        $response = $this->get('/user/sometotallynonexistinguser');
+        $response->assertViewIs('users.notfound');
+    }
 
     // public function test_about_page_is_loaded()
     // {
