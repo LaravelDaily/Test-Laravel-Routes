@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\StatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,25 +21,43 @@ use Illuminate\Support\Facades\Route;
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
 
+Route::get('/', [HomeController::class, 'index']);
+
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
-
+Route::get('/user/{name}', [UserController::class, 'show']);
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-
+Route::get('/about', function(){
+    return view("pages.about");
+})->name('about');
+Route::get('/dashboard', DashboardController::class );
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-
+Route::get('/log-in', function () {
+    return redirect('/login');
+});
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'app'], function () {
+        Route::get('dashboard', [DashboardController::class, 'index']);
+        Route::resource('tasks', TaskController::class);
+    });
+
+Route::group(['middleware' => 'is_admin','prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], function () {
+     Route::get('dashboard', 'DashboardController')->name('dashboard');
+     Route::get('stats', 'StatsController');
+    });
+});
 
     // Tasks inside that Authenticated group:
 
