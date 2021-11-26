@@ -51,6 +51,12 @@ class RoutesTest extends TestCase
         $response->assertRedirect('/login');
     }
 
+    public function test_dashboard_page_is_loaded()
+    {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)->get('/app/dashboard');
+        $response->assertViewIs('dashboard');
+    }
 
     public function test_task_crud_is_working()
     {
@@ -81,6 +87,12 @@ class RoutesTest extends TestCase
 
         $response = $this->actingAs($user)->get('/api/v1/tasks');
         $response->assertOk();
+
+        $response = $this->actingAs($user)->get('/api/v1/tasks/create');
+        $response->assertNotFound();
+
+        $response = $this->actingAs($user)->get('/api/v1/tasks/edit');
+        $response->assertNotFound();
 
         $response = $this->actingAs($user)->post('/api/v1/tasks', ['name' => 'Test']);
         $response->assertCreated();
@@ -120,5 +132,4 @@ class RoutesTest extends TestCase
         $response = $this->actingAs($admin)->get('/admin/stats');
         $response->assertViewIs('admin.stats');
     }
-
 }
