@@ -35,6 +35,14 @@ class RoutesTest extends TestCase
         $response->assertViewIs('users.notfound');
     }
 
+    public function test_log_in_page_is_redirected_to_login_page()
+    {
+        $response = $this->get('/log-in');
+        
+        $response->assertStatus(301);
+        $response->assertRedirect('/login');
+    }
+
     public function test_about_page_is_loaded()
     {
         $response = $this->get('/about');
