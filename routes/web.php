@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
-    Route::group(['prefix' => '/app'], function () {
+    Route::group(['prefix' => 'app'], function () {
 
         // Tasks inside that /app group:
 
@@ -68,7 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-        Route::resource('/tasks', TaskController::class);
+        Route::resource('/tasks', App\Http\Controllers\TaskController::class);
 
     // End of the /app Route Group
     });
@@ -78,7 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-    Route::group(['middleware' => 'is_admin', 'prefix' => '/admin'], function () {
+    Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function () {
 
     
 
