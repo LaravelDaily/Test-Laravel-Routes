@@ -71,19 +71,19 @@ Route::middleware('auth')->group(function() {
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-    Route::prefix('admin')->middleware('is_admin')->group(function() {
+    Route::group(['middleware' => 'is_admin', 'prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin'], function() {
 
         // Tasks inside that /admin group:
 
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('dashboard', [Admin\DashboardController::class]);
+        Route::get('dashboard', 'DashboardController');
 
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('stats', [Admin\StatsController::class]);
+        Route::get('stats', 'StatsController');
 
 
     // End of the /admin Route Group
