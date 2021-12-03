@@ -35,6 +35,9 @@ Route::get('/about', function(){
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
+Route::get('/log-in', function(){
+    return redirect('/login');
+});
 
 
 // Task 5: group the following route sentences below in Route::group()
