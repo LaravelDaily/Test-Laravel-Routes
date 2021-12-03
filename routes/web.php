@@ -28,24 +28,19 @@ Route::get('/user/{name}', [\App\Http\Controllers\UserController::class, 'show']
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-Route::get('/about', function(){
-    return view('pages.about');
-})->name('about');
+Route::view('/about', 'pages.about')->name('about');
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::get('/log-in', function(){
-    return redirect('/login');
-});
+Route::redirect('/log-in', '/login');
+
 
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::group([
-    'middleware' => 'auth'
-    ], function(){
+Route::group(['middleware' => 'auth'], function(){
     
     // Tasks inside that Authenticated group:
     
@@ -65,7 +60,7 @@ Route::group([
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-        Route::resource('/task', \App\Http\Controllers\TaskController::class);
+        Route::resource('/tasks', \App\Http\Controllers\TaskController::class);
     });
     // End of the /app Route Group
 
