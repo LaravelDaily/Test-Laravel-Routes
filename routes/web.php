@@ -89,7 +89,7 @@ Route::group([
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-
+        Route::get('/stats', \App\Http\Controllers\Admin\StatsController::class);
     });
     // End of the /admin Route Group
 });
