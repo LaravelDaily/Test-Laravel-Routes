@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\Api\V1\TaskController as TaskApiController;
 use App\Http\Controllers\DashboardController;
@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['middleware' => 'is_admin', 'prefix' => 'admin', 'ad' => 'admin'], function () {
-        Route::get('dashboard', AdminDashboard::class)->name('dashboard');
+        Route::get('dashboard', AdminDashboardController::class)->name('dashboard');
         Route::get('stats', StatsController::class)->name('stats');
     });
 
