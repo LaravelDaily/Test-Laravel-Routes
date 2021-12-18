@@ -43,7 +43,7 @@ Route::redirect('/log-in','/login');
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::middleware(['auth'])->group(function(){
+Route::group(['middleware' => 'auth'],function(){
 
 
 
@@ -52,7 +52,7 @@ Route::middleware(['auth'])->group(function(){
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
-    Route::prefix('/app')->group(function(){
+    Route::prefix('app')->group(function(){
 
 
         // Tasks inside that /app group:
@@ -61,13 +61,13 @@ Route::middleware(['auth'])->group(function(){
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('/dashboard',DashboardController::class);
+        Route::get('/dashboard',DashboardController::class)->name('dashboard');
 
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-        Route::resource('tasks',TaskController::class);
+        Route::resource('/tasks',TaskController::class);
 
     // End of the /app Route Group
     });
