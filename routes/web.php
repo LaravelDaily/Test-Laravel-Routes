@@ -5,7 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaskController;
-
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\StatsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,6 +77,7 @@ Route::middleware(['auth'])->group(function(){
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
+    Route::group(['prefix' => 'admin' , 'middleware' => 'is_admin'],function(){
 
 
         // Tasks inside that /admin group:
@@ -83,13 +85,16 @@ Route::middleware(['auth'])->group(function(){
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
+        Route::get('/dashboard',AdminDashboardController::class);
 
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
+        Route::get('/stats',StatsController::class);
 
 
     // End of the /admin Route Group
+    });
 
 // End of the main Authenticated Route Group
 });
