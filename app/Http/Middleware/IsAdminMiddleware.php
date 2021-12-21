@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class IsAdminMiddleware
 {
@@ -17,7 +18,7 @@ class IsAdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         abort_if(!auth()->user()->is_admin, 403);
-        if (!auth()->user()->is_admin) {
+        if (!auth()) {
             abort(403);
         }
 
