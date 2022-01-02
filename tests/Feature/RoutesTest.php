@@ -3,6 +3,7 @@
 use App\Models\User;
 use App\Models\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use function Pest\Laravel\get;
 
 uses(RefreshDatabase::class);
 
@@ -11,12 +12,12 @@ it('shows welcome on home screen')
     ->assertViewIs('welcome')
     ->assertViewHas('pageTitle', 'Homepage');
 
-it('existing users page found', function () {
+it('finds existing users page', function () {
     $user = User::factory()->create();
-    $response = $this->get('/user/' . $user->name);
 
-    $response->assertOk();
-    $response->assertViewIs('users.show');
+    get('/user/' . $user->name)
+        ->assertOk()
+        ->assertViewIs('users.show');
 });
 
 it('nonexisting users page not found')
@@ -29,10 +30,12 @@ it('loads about page')
 
 it('checks if auth middleware works', function () {
     $response = $this->get('/app/dashboard');
-    $response->assertRedirect('/login');
+    expect($response->isRedirect(url('/login')))
+        ->toBeTrue();
 
     $response = $this->get('/app/tasks');
-    $response->assertRedirect('/login');
+    expect($response->isRedirect(url('/login')))
+        ->toBeTrue();
 });
 
 it('checks if tasks crud is working', function () {
@@ -78,25 +81,35 @@ it('checks if tasks api crud is working', function () {
 });
 
 it('checks if admin middleware is working', function () {
-    $response = $this->get('/admin/dashboard');
-    $response->assertRedirect('login');
+    $response = get('/admin/dashboard');
+    expect($response->isRedirect(url('/login')))
+        ->toBeTrue();
 
-    $response = $this->get('/admin/stats');
-    $response->assertRedirect('login');
+    $response = get('/admin/stats');
+    expect($response->isRedirect(url('/login')))
+        ->toBeTrue();
 
     $user = User::factory()->create();
 
     $response = $this->actingAs($user)->get('/admin/dashboard');
-    $response->assertStatus(403);
+
+    expect($response)
+        ->status()
+        ->toBe(403);
 
     $response = $this->actingAs($user)->get('/admin/stats');
-    $response->assertStatus(403);
+
+    expect($response)
+        ->status()
+        ->toBe(403);
 
     $admin = User::factory()->create(['is_admin' => 1]);
 
     $response = $this->actingAs($admin)->get('/admin/dashboard');
-    $response->assertViewIs('admin.dashboard');
+    expect($response)
+        ->assertViewIs('admin.dashboard');
 
     $response = $this->actingAs($admin)->get('/admin/stats');
-    $response->assertViewIs('admin.stats');
+    expect($response)
+        ->assertViewIs('admin.stats');
 });
