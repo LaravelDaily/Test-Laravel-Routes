@@ -6,12 +6,10 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
-it('shows welcome on home screen', function () {
-    $response = $this->get('/');
-
-    $response->assertViewIs('welcome');
-    $response->assertViewHas('pageTitle', 'Homepage');
-});
+it('shows welcome on home screen')
+    ->get('/')
+    ->assertViewIs('welcome')
+    ->assertViewHas('pageTitle', 'Homepage');
 
 it('existing users page found', function () {
     $user = User::factory()->create();
@@ -21,16 +19,13 @@ it('existing users page found', function () {
     $response->assertViewIs('users.show');
 });
 
-it('nonexisting users page not found', function () {
-    $response = $this->get('/user/sometotallynonexistinguser');
-    $response->assertViewIs('users.notfound');
-});
+it('nonexisting users page not found')
+    ->get('/user/sometotallynonexistinguser')
+    ->assertViewIs('users.notfound');
 
-it('loads about page', function () {
-    $response = $this->get('/about');
-
-    $response->assertViewIs('pages.about');
-});
+it('loads about page')
+    ->get('/about')
+    ->assertViewIs('pages.about');
 
 it('checks if auth middleware works', function () {
     $response = $this->get('/app/dashboard');
