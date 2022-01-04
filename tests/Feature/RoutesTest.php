@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -24,7 +23,6 @@ class RoutesTest extends TestCase
     {
         $user = User::factory()->create();
         $response = $this->get('/user/' . $user->name);
-
         $response->assertOk();
         $response->assertViewIs('users.show');
     }
@@ -98,9 +96,10 @@ class RoutesTest extends TestCase
 
     public function test_is_admin_middleware_is_working()
     {
-        $response = $this->get('/admin/dashboard');
-        $response->assertRedirect('login');
 
+        $response = $this->get('/admin/dashboard');
+
+        $response->assertRedirect('login');
         $response = $this->get('/admin/stats');
         $response->assertRedirect('login');
 
