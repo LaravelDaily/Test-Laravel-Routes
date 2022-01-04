@@ -4,13 +4,10 @@ namespace Tests\Feature;
 
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class RoutesTest extends TestCase
 {
-    use RefreshDatabase;
 
     public function test_home_screen_shows_welcome()
     {
@@ -24,12 +21,11 @@ class RoutesTest extends TestCase
     {
         $user = User::factory()->create();
         $response = $this->get('/user/' . $user->name);
-
         $response->assertOk();
         $response->assertViewIs('users.show');
     }
 
-    public function test_user_page_nonexisting_user_not_found()
+    public function test_user_page_non_existing_user_not_found()
     {
         $response = $this->get('/user/sometotallynonexistinguser');
         $response->assertViewIs('users.notfound');
@@ -98,9 +94,10 @@ class RoutesTest extends TestCase
 
     public function test_is_admin_middleware_is_working()
     {
-        $response = $this->get('/admin/dashboard');
-        $response->assertRedirect('login');
 
+        $response = $this->get('/admin/dashboard');
+
+        $response->assertRedirect('login');
         $response = $this->get('/admin/stats');
         $response->assertRedirect('login');
 
