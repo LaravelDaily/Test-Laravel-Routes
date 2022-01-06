@@ -42,16 +42,15 @@ Route::view('/about', 'pages.about')->name('about');
 
 Route::redirect('/log-in', '/login');
 
-
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
     // Tasks inside that Authenticated group:
 Route::middleware('auth')->group(function(){
-        Route::prefix('/app')->group(function(){
+        Route::prefix('app')->group(function(){
             Route::get('/dashboard', ControllersDashboardController::class)->name('dashboard');
             Route::get('/task', [ControllersTaskController::class, 'index'])->name('task');
-            Route::resource('/tasks', ControllersTaskController::class);
+            Route::resource('tasks', ControllersTaskController::class);
         });
 
 });
