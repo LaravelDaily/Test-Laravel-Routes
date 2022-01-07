@@ -82,7 +82,6 @@ Route::prefix('admin')->middleware(['is_admin'])->group(function () {
     });
 
     // End of the /admin Route Group
-});
 
 // End of the main Authenticated Route Group
 
