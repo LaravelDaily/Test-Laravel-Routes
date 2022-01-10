@@ -1,12 +1,12 @@
 <?php
-
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,7 +41,7 @@ Route::redirect('log-in','login');
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::middleware(['auth'])->group(function(){
+Route::group(['middleware'=>'auth'],function(){
     // Tasks inside that Authenticated group:
 
     // Task 6: /app group within a group
@@ -55,7 +55,7 @@ Route::middleware(['auth'])->group(function(){
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-Route::get('/dashboard',DashboardController::class)->name('dashboard');
+Route::get('dashboard',DashboardController::class)->name('dashboard');
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
@@ -70,14 +70,14 @@ Route::get('/dashboard',DashboardController::class)->name('dashboard');
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
 
-    Route::group(['prefix'=>'admin', 'middleware'=>'is_admin'],function(){
+    Route::group(['middleware'=>['auth', 'is_admin'],'prefix'=>'admin'],function(){
 
         // Tasks inside that /admin group:
 
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-               Route::get('/dashboard', [AdminDashboardController::class,'index']);
+               Route::get('/dashboard', AdminDashboardController::class);
 
 
 
