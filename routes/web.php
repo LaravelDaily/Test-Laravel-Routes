@@ -21,7 +21,7 @@ use App\Http\Controllers\Admin\DashboardController;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
-Route::get('/', [HomeController::class , 'index']);
+Route::get('/', [HomeController::class , 'index'])->name('home');
 
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
@@ -44,10 +44,9 @@ Route::get('/about', function() {
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::get('/log-in', function() { 
-        return redirect('login');
-        }
-);
+Route::get('/log-in', function () {
+    return redirect()->route('login');
+});
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
@@ -69,7 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('/dashboard', DashboardController::class)->name('dashboard');
+        Route::get('dashboard', DashboardController::class)->name('dashboard');
 
 
         // Task 8: Manage tasks with URL /app/tasks/***.
@@ -78,8 +77,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('tasks', TaskController::class);
 
     // End of the /app Route Group
-    });
-
 });
 
 
@@ -102,13 +99,14 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('stats', [StatsController::class]);
+        Route::get('stats', StatsController::class);
 
 
     // End of the /admin Route Group
-});
+   });
 // End of the main Authenticated Route Group
 
 // One more task is in routes/api.php
+});
 
-require __DIR__.'/auth.php';
+require __DIR__ .'/auth.php';
