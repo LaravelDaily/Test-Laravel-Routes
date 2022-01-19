@@ -1,7 +1,6 @@
 <?php
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\StatsController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
@@ -32,8 +31,8 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // Also, assign the route name "about"
 // Put one code line here below
 Route::get('/about', function () {
-    return view('pages.about')->name('about');
-});
+    return view('pages.about');
+})->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
@@ -77,7 +76,7 @@ Route::group(['middleware' =>'auth'],function(){
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('dashboard', AdminDashboardController::class);
+        Route::get('dashboard', DashboardController::class);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
