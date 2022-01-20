@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -50,7 +49,6 @@ class RoutesTest extends TestCase
         $response = $this->get('/app/tasks');
         $response->assertRedirect('/login');
     }
-
 
     public function test_task_crud_is_working()
     {
