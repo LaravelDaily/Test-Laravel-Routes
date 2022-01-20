@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -31,12 +32,23 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // Also, assign the route name "about"
 // Put one code line here below
 
+Route::get('/about', function () {
+    return view('pages.about');
+})->name('about');
+
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
+Route::redirect('/log-in', '/login');
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::prefix('app')->group(function () {
+        Route::get('dashboard', DashboardController::class)->name('dashboard');
+    });
+});
 
 // Tasks inside that Authenticated group:
 
