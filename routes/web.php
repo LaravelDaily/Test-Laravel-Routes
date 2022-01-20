@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Api\V1\TaskController;
+use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController as ControllersTaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,8 +49,14 @@ Route::redirect('/log-in', '/login');
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::prefix('app')->group(function () {
         Route::get('dashboard', DashboardController::class)->name('dashboard');
+        Route::resource('tasks', ControllersTaskController::class);
+    });
 
-        Route::resource('tasks', TaskController::class);
+    Route::group(['middleware' => ['is_admin']], function () {
+        Route::prefix('admin')->group(function () {
+            Route::get('dashboard', DashboardController::class);
+            Route::get('stats', StatsController::class);
+        });
     });
 });
 
