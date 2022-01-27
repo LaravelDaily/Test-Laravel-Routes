@@ -70,7 +70,7 @@ Route::middleware(['auth'])->group(function () {
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
 
-    Route::group(['middleware' => 'is_admin', 'prefix' => ''], function () {
+    Route::group(['middleware' => 'is_admin'], function () {
         // Tasks inside that /admin group:
         Route::prefix('admin')->group(function () {
 
