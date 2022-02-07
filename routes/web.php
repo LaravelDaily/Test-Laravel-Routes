@@ -1,5 +1,10 @@
 <?php
-
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\StatsController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,26 +20,47 @@ use Illuminate\Support\Facades\Route;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
+Route::get('/', [HomeController::class, 'index']);
 
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
+Route::get('/user/{user:name}', [UserController::class, 'show']);
 
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
+Route::get('/about', function () {
+    return view('pages.about');
+})->name('about');
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
+Route::redirect('log-in', 'login');
+
 
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'app'], function () {
+        Route::get('dashboard', AdminDashboardController::class);
+        Route::resource('tasks', TaskController::class);
+    });
+
+    Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function () {
+        Route::get('dashboard', DashboardController::class);
+        Route::get('stats', StatsController::class);
+    });
+
+});
+
 
     // Tasks inside that Authenticated group:
 
@@ -45,7 +71,7 @@ use Illuminate\Support\Facades\Route;
         // Tasks inside that /app group:
 
 
-        // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
+        // Task 7: point URL /app/dashboard to a "Single Action" AdminDashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
 
@@ -63,10 +89,12 @@ use Illuminate\Support\Facades\Route;
     // Put one Route Group code line here below
 
 
+
+
         // Tasks inside that /admin group:
 
 
-        // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
+        // Task 10: point URL /admin/dashboard to a "Single Action" Admin/AdminDashboardController
         // Put one code line here below
 
 
