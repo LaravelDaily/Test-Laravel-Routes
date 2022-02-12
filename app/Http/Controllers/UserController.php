@@ -12,7 +12,6 @@ class UserController extends Controller
         if (!$user) {
             return view('users.notfound');
         }
-
         return view('users.show', compact('user'));
     }
 }

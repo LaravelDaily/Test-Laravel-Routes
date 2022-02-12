@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
-
 Route::get('/', [HomeController::class,'index']);
 
 
@@ -44,6 +44,16 @@ Route::redirect('log-in','login','301');
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
+Route::middleware('auth')->group(function(){
+
+    Route::prefix('app')->group(function(){
+
+        Route::get('/dashboard',DashboardController::class)->name('dashboard');
+        Route::get('/tasks/{any}',function (){})->where('any','.*');
+    });
+
+});
+
 
     // Tasks inside that Authenticated group:
 
