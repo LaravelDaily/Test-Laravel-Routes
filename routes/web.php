@@ -85,4 +85,4 @@ Route::redirect('log-in','login','301');
 
 // One more task is in routes/api.php
 
-require __DIR__.'/auth.php';
+qrequire __DIR__.'/auth.php';
