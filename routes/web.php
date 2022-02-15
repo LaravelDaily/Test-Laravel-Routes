@@ -32,7 +32,7 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 Route::get('/about', function () {
 
     return view('pages.about');
-});
+})->name('about');
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
