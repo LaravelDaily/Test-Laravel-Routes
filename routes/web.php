@@ -35,18 +35,19 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::redirect('log-in', 'login', 301);
+//Route::redirect('log-in', 'login', 301);
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-//Route::middleware
+Route::middleware('auth')->group(function() {
 
     // Tasks inside that Authenticated group:
 
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
+    Route::prefix('app')->group(function() {
 
         // Tasks inside that /app group:
 
@@ -54,6 +55,7 @@ Route::redirect('log-in', 'login', 301);
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
+        Route::get('dashboard', [DashboardController::class])->name(dashboard);
 
 
         // Task 8: Manage tasks with URL /app/tasks/***.
