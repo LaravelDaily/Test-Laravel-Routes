@@ -44,14 +44,14 @@ Route::redirect('/log-in', '/login');
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::middleware('auth')->group(function() {
-    Route::prefix('app', function(){
-        Route::get('/dashboard', DashboardController::class)->name('dashboard');
+Route::middleware(['auth'])->group(function() {
+    Route::prefix('app')->group(function(){
+        Route::get('dashboard', DashboardController::class)->name('dashboard');
 
         Route::resource('tasks', TaskController::class);
     });
 
-    Route::middleware('is_admin')->prefix('admin')->group(function(){
+    Route::middleware(['is_admin'])->prefix('admin')->group(function(){
         Route::get('dashboard', DashboardController::class);
 
         Route::get('stats', StatsController::class);
