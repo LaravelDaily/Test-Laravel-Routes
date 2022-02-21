@@ -38,19 +38,23 @@ Route::get('/about', 'pages.about')->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::get('/log-in', function () {
-    return redirect('/login');
-});
+Route::redirect('/log-in', '/login');
 
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
 Route::middleware('auth')->group(function() {
-    Route::prefix('/app', function(){
+    Route::prefix('app', function(){
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
         Route::resource('tasks', TaskController::class);
+    });
+
+    Route::middleware('is_admin')->prefix('admin')->group(function(){
+        Route::get('dashboard', DashboardController::class);
+
+        Route::get('stats', StatsController::class);
     });
 });
 
@@ -79,11 +83,6 @@ Route::middleware('auth')->group(function() {
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-    Route::middleware('is_admin')->prefix('admin')->group(function(){
-        Route::get('dashboard', DashboardController::class);
-
-        Route::get('stats', StatsController::class);
-    });
 
 
         // Tasks inside that /admin group:
