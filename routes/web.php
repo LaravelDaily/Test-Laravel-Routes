@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController1 as AdminDashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
@@ -32,12 +32,12 @@ Route::get("/user/{name}", [UserController::class, 'show']);
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-Route::get('/about', 'pages.about')->name('about');
+Route::view('/about', 'pages.about')->name('about');
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::get('/log-in', '/login');
+Route::redirect('/log-in', '/login');
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
@@ -68,7 +68,7 @@ Route::middleware('auth')->group(function(){
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-    Route::middleware('is_admin')->prefix('/admin')->group(function(){
+    Route::prefix('/admin')->middleware('is_admin')->group(function(){
 
 
         // Tasks inside that /admin group:
