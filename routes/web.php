@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
@@ -27,16 +28,12 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('admin')->middleware('is_admin')->group(function () {
-        //
+        Route::get('/dashboard', AdminDashboardController::class);
     });
 });
 
 
         // Tasks inside that /admin group:
-
-
-        // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
-        // Put one code line here below
 
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
