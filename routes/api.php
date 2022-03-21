@@ -24,4 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     // Keep in mind that prefix should be /api/v1.
     // Add ONE line to assign 5 resource routes to TaskController
     // Put one code line here below
-    Route::apiResource('api/v1/tasks', TaskController::class)->except(['edit', 'create']);
+    Route::apiResource('v1/tasks', TaskController::class)->except(['edit', 'create']);
