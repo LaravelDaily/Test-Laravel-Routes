@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 
@@ -20,16 +21,11 @@ Route::view('/about', 'pages.about')->name('about');
 Route::redirect('/log-in', '/login');
 Route::middleware('auth')->group(function () {
     Route::prefix('app')->group(function () {
-        //
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
     });
 });
 
         // Tasks inside that /app group:
-
-
-        // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
-        // Assign the route name "dashboard"
-        // Put one Route Group code line here below
 
 
         // Task 8: Manage tasks with URL /app/tasks/***.
