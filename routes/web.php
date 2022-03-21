@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', [HomeController::class, 'index']);
@@ -22,17 +23,9 @@ Route::redirect('/log-in', '/login');
 Route::middleware('auth')->group(function () {
     Route::prefix('app')->group(function () {
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
+        Route::resource('/tasks', TaskController::class);
     });
 });
-
-        // Tasks inside that /app group:
-
-
-        // Task 8: Manage tasks with URL /app/tasks/***.
-        // Add ONE line to assign 7 resource routes to TaskController
-        // Put one code line here below
-
-    // End of the /app Route Group
 
 
     // Task 9: /admin group within a group
