@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\StatsController;
 
 /*
@@ -76,12 +76,12 @@ Route::group(['middleware'=>['auth']], function() {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/admin/dashboard','Admin/DashboardController');
+        Route::get('/admin/dashboard','AdminDashboardController');
 
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('/admin/stats','Admin/StatsController');
+        Route::get('/admin/stats','StatsController');
 
      });
     // End of the /admin Route Group
