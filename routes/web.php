@@ -36,11 +36,12 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // Also, assign the route name "about"
 // Put one code line here below
 
-// Route::get('/about', function () {
-//     return view('pages.about');
-// })->name('about');
+Route::get('/about', function () {
+    return view('pages.about');
+})->name('about');
 
-Route::view('/about', 'pages.about')->name('about');
+// Route::view('/about', 'pages.about')->name('about');
+
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
@@ -82,7 +83,7 @@ Route::middleware(['auth'])->group(function () {
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
 
-    Route::middleware('is_admin')->prefix('/admin')->group(function () {
+    Route::middleware(['is_admin'])->prefix('/admin')->group(function () {
 
         // Tasks inside that /admin group:
 
