@@ -36,11 +36,11 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // Also, assign the route name "about"
 // Put one code line here below
 
-Route::get('/about', function () {
-    return view('pages.about');
-})->name('about');
+// Route::get('/about', function () {
+//     return view('pages.about');
+// })->name('about');
 
-// Route::view('/about', 'pages.about')->name('about');
+Route::view('/about', 'pages.about')->name('about');
 
 
 
@@ -55,7 +55,7 @@ Route::redirect('/log-in', '/login');
 // Put one Route Group code line here below
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware('auth')->group(function () {
 
     // Tasks inside that Authenticated group:
 
@@ -63,18 +63,18 @@ Route::middleware(['auth'])->group(function () {
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
 
-    Route::prefix('/app')->group(function () {
+    Route::prefix('app')->group(function () {
 
         // Tasks inside that /app group:
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::match(['get', 'post'], '/dashboard', ControllersDashboardController::class);
+        Route::get('/dashboard', ControllersDashboardController::class)->name('dashboard');
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-        Route::resource('tasks', TaskController::class);
+        Route::resource('/tasks', TaskController::class);
     });
     // End of the /app Route Group
 
@@ -83,20 +83,20 @@ Route::middleware(['auth'])->group(function () {
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
 
-    Route::middleware(['is_admin'])->prefix('/admin')->group(function () {
+    Route::prefix('admin')->middleware(['is_admin'])->group(function () {
 
         // Tasks inside that /admin group:
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
 
-        Route::match(['get', 'post'], '/dashboard', DashboardController::class);
+        Route::get('/dashboard', DashboardController::class);
 
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
 
-        Route::match(['get', 'post'], '/stats', StatsController::class);
+        Route::get('/stats', StatsController::class);
 
         // End of the /admin Route Group
     });
