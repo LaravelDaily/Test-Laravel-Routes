@@ -23,9 +23,9 @@ class RoutesTest extends TestCase
     public function test_user_page_existing_user_found()
     {
         $user = User::factory()->create();
-        $response = $this->get('/user/' . $user->name);
+        $response = $this->get("user/{$user->name}");
 
-        $response->assertOk();
+        $response->assertSuccessful();
         $response->assertViewIs('users.show');
     }
 
@@ -55,6 +55,7 @@ class RoutesTest extends TestCase
     public function test_task_crud_is_working()
     {
         $user = User::factory()->create();
+        $user = User::find($user->id);
 
         $response = $this->actingAs($user)->get('/app/tasks');
         $response->assertOk();
@@ -78,6 +79,7 @@ class RoutesTest extends TestCase
     public function test_task_api_crud_is_working()
     {
         $user = User::factory()->create();
+        $user = User::find($user->id);
 
         $response = $this->actingAs($user)->get('/api/v1/tasks');
         $response->assertOk();
@@ -105,6 +107,7 @@ class RoutesTest extends TestCase
         $response->assertRedirect('login');
 
         $user = User::factory()->create();
+        $user = User::find($user->id);
 
         $response = $this->actingAs($user)->get('/admin/dashboard');
         $response->assertStatus(403);
@@ -113,6 +116,7 @@ class RoutesTest extends TestCase
         $response->assertStatus(403);
 
         $admin = User::factory()->create(['is_admin' => 1]);
+        $admin = User::find($admin->id);
 
         $response = $this->actingAs($admin)->get('/admin/dashboard');
         $response->assertViewIs('admin.dashboard');
