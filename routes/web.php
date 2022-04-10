@@ -6,7 +6,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +35,7 @@ Route::view('/about','pages.about')->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::redirect('log-in','login',302);
+Route::redirect('log-in','login');
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
@@ -85,7 +84,7 @@ Route::group(['middleware' => "auth",'prefix' => "app"],function() {
 
     // End of the /admin Route Group
 
-Route::group(['prefix' => 'admin', 'middleware' => "is_admin"],function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'],function() {
     Route::get('dashboard',DashboardController::class);
     Route::get('stats',StatsController::class);
 });
