@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
+// use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ Route::get('/', [HomeController::class, 'index']);
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
 
-Route::controller('/users/{name}', UserController::class,'show');
+// Route::controller('/users/{name}', UserController::class,'show');
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
