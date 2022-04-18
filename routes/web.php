@@ -31,6 +31,7 @@ Route::get('/users/{name}', [UserController::class,'show']);
 Route::view('/about', 'pages.about');
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
+Route::redirect('Log-in', 'Login', 301);
 
 
 // Task 5: group the following route sentences below in Route::group()
