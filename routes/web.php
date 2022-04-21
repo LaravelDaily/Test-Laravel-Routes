@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{HomeController, UserController, DashboardController, TaskController};
+use  App\Http\Controllers\Admin\{DashboardController as AdminDashboardController, StatsController as AdminStatsController};
 
 /*
 |--------------------------------------------------------------------------
@@ -81,3 +83,37 @@ use Illuminate\Support\Facades\Route;
 // One more task is in routes/api.php
 
 require __DIR__.'/auth.php';
+
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/user/{name}', [UserController::class, 'show']);
+Route::view('/about', 'pages.about')->name('about');
+Route::redirect('log-in', 'login');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['name' => 'app', 'prefix' => 'app'], function () {
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
+        Route::resource('/tasks', TaskController::class)->names('tasks');
+    });
+
+    Route::group(['name' => 'admin', 'prefix' => 'admin', 'middleware' => 'is_admin'], function() {
+        Route::get('/dashboard', AdminDashboardController::class);
+        Route::get('/stats', AdminStatsController::class);
+    });
+});
+
+// Tasks inside that /admin group:
+
+
+// Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
+// Put one code line here below
+
+
+// Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
+// Put one code line here below
+
+
+// End of the /admin Route Group
+
+// End of the main Authenticated Route Group
+
+// One more task is in routes/api.php
