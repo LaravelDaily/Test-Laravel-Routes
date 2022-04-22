@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\StatsController as AdminStatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,7 +84,7 @@ Route::get('/dashboard',[AdminDashboardController::class]);
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
 
-Route::get('/stats',[StatsController::class])->name('stats');
+Route::get('/stats',[AdminStatsController::class])->name('stats');
     // End of the /admin Route Group
 });
 // End of the main Authenticated Route Group
