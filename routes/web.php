@@ -40,16 +40,15 @@ Route::redirect('/log-in','/login');
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::middleware(['auth'])->group(function () {
-
-
+Route::group(['middleware'=> 'auth'],function()
+{
     // Tasks inside that Authenticated group:
 
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
-Route::prefix('/app')->group(function () {
-
+Route::group(['prefix'=> 'app'], function()
+    {
 
         // Tasks inside that /app group:
 
@@ -70,9 +69,7 @@ Route::resource('tasks',[TaskController::class]);
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-Route::prefix('admin')->middleware('is_admin')->group(function () {
-
-
+Route::group(['prefix'=> 'admin', 'middleware'=> 'is_admin'], function(){
 
         // Tasks inside that /admin group:
 
@@ -84,7 +81,7 @@ Route::get('/dashboard',[AdminDashboardController::class]);
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
 
-Route::get('/stats',[StatsController::class]);
+Route::get('/stats',[StatsController::class])->name('stats');
     // End of the /admin Route Group
 });
 // End of the main Authenticated Route Group
