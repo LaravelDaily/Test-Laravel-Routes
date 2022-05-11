@@ -71,18 +71,20 @@ Route::middleware(['auth'])->group(function () {
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-Route::group(['prefix'=> 'admin', 'middleware' => 'is_admin' ],function(){
-
+    /**
+     *  Check middleware is_admin at RoutesTest.php , I notice is_admin dont check login so so I added auth
+     */
+    Route::prefix('admin')->middleware(['auth','is_admin'])->group(function () {
         // Tasks inside that /admin group:
 
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-    Route::get('dashboard',AdminDashboardController::class);
+    Route::get('/dashboard',AdminDashboardController::class);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-    Route::get('stats',StatsController::class);
+    Route::get('/stats',StatsController::class);
 
     // End of the /admin Route Group
 });
@@ -91,4 +93,4 @@ Route::group(['prefix'=> 'admin', 'middleware' => 'is_admin' ],function(){
 
 // One more task is in routes/api.php
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
