@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -67,7 +68,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/tasks', TaskController::class);
     });
     // End of the /app Route Group
-});
 
 // Task 9: /admin group within a group
 // Add a group for routes with URL prefix "admin"
@@ -75,22 +75,23 @@ Route::group(['middleware' => 'auth'], function () {
 // Put one Route Group code line here below
 
 
-Route::group(['middleware' => 'is_admin' , 'prefix' => 'admin'], function () {
+    Route::group(['middleware' => 'is_admin','prefix' => 'admin'], function() {
 
     // Tasks inside that /admin group:
 
 
     // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
     // Put one code line here below
-    Route::get('/dashboard', DashboardController::class);
+        Route::get('/dashboard', AdminDashboardController::class);
 
     // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
     // Put one code line here below
-    Route::get('/stats', StatsController::class);
+        Route::get('/stats', StatsController::class);
 
     // End of the /admin Route Group
 
     // End of the main Authenticated Route Group
+    });
 });
 // One more task is in routes/api.php
 
