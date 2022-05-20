@@ -10,4 +10,9 @@ class HomeController extends Controller
 
         return view('welcome', compact('pageTitle'));
     }
+
+    public function create() {
+        $pageTitle = 'Create';
+        return view('create', compact('pageTitle'));
+    }
 }
