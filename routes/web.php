@@ -77,26 +77,23 @@ Route::middleware('auth')->group(function() {
     // Put one Route Group code line here below
     Route::group(['middleware' => 'is_admin', 'prefix' => '/admin'], function() {
 
-        
-        
         // Tasks inside that /admin group:
-        
-        
+
+
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/admin/dashboard', DashboardController::class);
-        
+
+        Route::get('/dashboard' , AdminDashboardController::class);
+
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('/admin/stats', StatsController::class);
-        
-        
-        // End of the /admin Route Group
-        
-        // End of the main Authenticated Route Group
+        Route::get('/stats' , StatsController::class);
+
+
     });
+    // End of the /admin Route Group
+
 });
-    
     // One more task is in routes/api.php
 
 require __DIR__.'/auth.php';
