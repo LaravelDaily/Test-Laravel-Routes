@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,15 +27,18 @@ Route::get('/', [HomeController::class, 'index']);
 // Put one code line here below
 Route::get('/user/{name}', [UserController::class, 'show']);
 
+
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
 Route::view('/about', 'pages.about')->name('about');
 
+
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
 Route::redirect('/log-in', '/login');
+
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
@@ -57,6 +61,7 @@ Route::group(['middleware' => 'auth'], function() {
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
+        Route::resource('tasks', TaskController::class);
     });
     // End of the /app Route Group
 });
