@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Admin\StatsController;
 use Illuminate\Support\Facades\Route;
 
 /*
