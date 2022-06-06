@@ -4,7 +4,6 @@ use App\Http\Controllers\Api\V1\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-@@ -20,6 +21,9 @@
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     // Task 12: Manage tasks with endpoint /api/v1/tasks/*****.
