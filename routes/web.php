@@ -63,7 +63,7 @@ Route::middleware(['auth'])->group(function () {
 // Task 8: Manage tasks with URL /app/tasks/***.
 // Add ONE line to assign 7 resource routes to TaskController
 // Put one code line here below
-        Route::resource('/tasks', TaskController::class);
+        Route::resource('tasks', TaskController::class);
     });
 // End of the /app Route Group
 
@@ -73,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
 // Assign middleware called "is_admin" to them
 // Put one Route Group code line here below
     Route::prefix('admin')->middleware(['is_admin'])->group(function () {
-
+//        Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function() {
 // Tasks inside that /admin group:
 
 
