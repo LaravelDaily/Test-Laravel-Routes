@@ -46,7 +46,9 @@ Route::redirect('/log-in','/login');
 // Put one Route Group code line here below
 
 Route::middleware('auth')->group(function (){
+    Route::prefix('/app',function (){
 
+    });
 });
 
     // Tasks inside that Authenticated group:
