@@ -27,7 +27,7 @@ Route::get('/', [HomeController::class, 'index']);
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
 
-Route::get('/user/{$name}', [UserController::class, 'show']);
+Route::get('/user/{name}', [UserController::class, 'show']);
 
 
 // Task 3: point the GET URL "/about" to the view
@@ -35,8 +35,7 @@ Route::get('/user/{$name}', [UserController::class, 'show']);
 // Also, assign the route name "about"
 // Put one code line here below
 
-Route::view('/about', 'pages.about');
-
+Route::view('/about', 'about')->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
@@ -82,8 +81,8 @@ Route::middleware('auth')->group(function () {
 // Put one Route Group code line here below
 
 Route::middleware('is_admin')->group(function () {
-    Route::get('/admin/dashboard', [DashboardController::class]);
-    Route::get('/admin/stats', [StatsController::class]);
+    Route::get('dashboard', [DashboardController::class]);
+    Route::get('stats', [StatsController::class]);
 });
 
 // Tasks inside that /admin group:
