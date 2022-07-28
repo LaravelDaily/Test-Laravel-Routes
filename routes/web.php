@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\StatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,8 +50,8 @@ Route::redirect('/log-in', '/login');
 
 Route::middleware('auth')->group(function () {
     Route::prefix('/app')->group(function () {
-        Route::get('/app/dashboard',[DashboardController::class])->name('dashboard');
-        Route::resource('tasks',TaskController::class);
+        Route::get('/app/dashboard', [DashboardController::class])->name('dashboard');
+        Route::resource('tasks', TaskController::class);
     });
 });
 
@@ -80,8 +81,9 @@ Route::middleware('auth')->group(function () {
 // Assign middleware called "is_admin" to them
 // Put one Route Group code line here below
 
-Route::middleware('is_admin')->group(function (){
-
+Route::middleware('is_admin')->group(function () {
+    Route::get('/admin/dashboard', [DashboardController::class]);
+    Route::get('/admin/stats', [StatsController::class]);
 });
 
 // Tasks inside that /admin group:
