@@ -82,9 +82,9 @@ Route::middleware('auth')->group(function () {
 // Assign middleware called "is_admin" to them
 // Put one Route Group code line here below
 
-Route::group(["middleware" => "is_admin", "prefix" => "admin"], function () {
-    Route::get('dashboard', [DashboardController::class])->name("admin.dashboard");
-    Route::get('stats', [StatsController::class])->name('admin.stats');
+Route::prefix('/admin')->middleware(['is_admin'])->group(function() {
+    Route::get('/dashboard',DashboardController::class);
+    Route::get('/stats',StatsController::class);
 });
 
 // Tasks inside that /admin group:
