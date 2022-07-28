@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -49,6 +50,7 @@ Route::redirect('/log-in', '/login');
 Route::middleware('auth')->group(function () {
     Route::prefix('/app')->group(function () {
         Route::get('/app/dashboard',[DashboardController::class])->name('dashboard');
+        Route::resource('tasks',TaskController::class);
     });
 });
 
