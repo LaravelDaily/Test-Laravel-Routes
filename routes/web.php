@@ -80,6 +80,9 @@ Route::middleware('auth')->group(function () {
 // Assign middleware called "is_admin" to them
 // Put one Route Group code line here below
 
+Route::middleware('is_admin')->group(function (){
+
+});
 
 // Tasks inside that /admin group:
 
