@@ -38,7 +38,9 @@ Route::get('/about', function(){
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::redirect('/log-in', '/login');
+Route::get('/log-in', function(){
+    return redirect('login');
+});
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
@@ -65,7 +67,7 @@ Route::redirect('/log-in', '/login');
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-        Route::resource('task', TaskController::class);
+        Route::resource('tasks', TaskController::class);
 
     });
     // End of the /app Route Group
