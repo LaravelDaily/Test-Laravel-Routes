@@ -40,7 +40,7 @@ Route::redirect('/log-in', '/login');
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware('auth')->group(function () {
 
     // Tasks inside that Authenticated group:
 
@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
 
-    Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function () {
+    Route::middleware('is_admin')->prefix('admin')->group(function () {
         // Tasks inside that /admin group:
         // Task 10: point URL /admin/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
