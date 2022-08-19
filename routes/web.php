@@ -76,11 +76,11 @@ Route::group(['middleware'=>'auth'],function(){
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
 
-        Route::get('dashboard', 'Admin\DashboardController');
+        Route::get('dashboard', 'DashboardController');
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
 
-        Route::get('stats', 'Admin\StatsController');
+        Route::get('stats', 'StatsController');
     // End of the /admin Route Group
     });
 // End of the main Authenticated Route Group
