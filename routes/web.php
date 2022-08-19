@@ -47,7 +47,7 @@ Route::group(['middleware'=>'auth'],function(){
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
-    Route::group(['prefix'=>'app'],function(){
+    Route::prefix('/app')->group(function (){
         // Tasks inside that /app group:
 
 
