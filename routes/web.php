@@ -17,28 +17,23 @@ use Illuminate\Support\Facades\Route;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
-//Route::main('/', [HomeController::class, 'index']);
+Route::main('/', [HomeController::class, 'index']);
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
-//Route::get('/user/{name}', [UserController::class, 'show']);
+Route::get('/user/{name}', [UserController::class, 'show']);
 
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-<<<<<<< HEAD
-// Route::get('/about', function() {
-//     return view('about');
-// });
 
-=======
 Route::get('/about', function() {
     return view('about');
 });
->>>>>>> fabd741d317e800f614254562caa9ed915cea5cc
+
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
