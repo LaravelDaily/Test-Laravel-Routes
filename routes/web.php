@@ -29,10 +29,16 @@ use Illuminate\Support\Facades\Route;
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
+<<<<<<< HEAD
 // Route::get('/about', function() {
 //     return view('about');
 // });
 
+=======
+Route::get('/about', function() {
+    return view('about');
+});
+>>>>>>> fabd741d317e800f614254562caa9ed915cea5cc
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
