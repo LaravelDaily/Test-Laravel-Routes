@@ -50,7 +50,7 @@ class RoutesTest extends TestCase
         $response = $this->get('/app/tasks');
         $response->assertRedirect('/login');
     }
-    
+
     public function test_task_crud_is_working()
     {
         $user = User::factory()->create();
