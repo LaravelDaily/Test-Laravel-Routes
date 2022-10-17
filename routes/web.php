@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         Route::get('dashboard', DashboardController::class)->name('dashboard');
+        
         // Put one Route Group code line here below
 
 
@@ -66,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('tasks', TaskController::class);
 
     // End of the /app Route Group
+    });
 
 
     // Task 9: /admin group within a group
@@ -89,8 +91,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     // End of the /admin Route Group
+    });
 
 // End of the main Authenticated Route Group
+});
 
 // One more task is in routes/api.php
 
