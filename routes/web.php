@@ -40,9 +40,7 @@ Route::get('/about',function(){
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::get('log-in',function(){
-    return redirect('login');
-});
+Route::redirect('/log-in', '/login');
 
 
 // Task 5: group the following route sentences below in Route::group()
@@ -75,7 +73,7 @@ Route::group(['middleware' => 'auth'],function(){
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here 
     
-    Route::group(['middleware' => 'is_admin','prefix'=>'admin'],function(){
+    Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function(){
         // Tasks inside that /admin group:
 
 
