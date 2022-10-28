@@ -54,7 +54,7 @@ Route::prefix('app')->group(function (){
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    Route::get('dashboard', DashboardController::class)->name('dashboard');
 
 
         // Task 8: Manage tasks with URL /app/tasks/***.
@@ -76,11 +76,11 @@ Route::prefix('admin')->middleware('is_admin')->group(function (){
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-Route::get('/dashboard',DashboardController::class);
+Route::get('dashboard',DashboardController::class);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-Route::get('/stats',\App\Http\Controllers\Admin\StatsController::class);
+Route::get('stats',\App\Http\Controllers\Admin\StatsController::class);
 
     // End of the /admin Route Group
 });
