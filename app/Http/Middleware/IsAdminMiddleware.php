@@ -16,10 +16,11 @@ class IsAdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        abort_if(!auth()->user()->is_admin, 403);
-        if (!auth()->user()->is_admin) {
-            abort(403);
+        if (!auth()->user()) {
+            return redirect('login');
         }
+
+        abort_if(!auth()->user()->is_admin, 403);
 
         return $next($request);
     }
