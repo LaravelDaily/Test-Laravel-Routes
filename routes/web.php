@@ -25,10 +25,12 @@ Route::get('/', [HomeController::class, 'index']);
 // Put one code line here below
 Route::get('/user/{name}', [UserController::class, 'show']);
 
+
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
+Route::view('/about','about')->name('about');
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
