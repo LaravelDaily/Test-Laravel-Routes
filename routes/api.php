@@ -19,14 +19,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'auth:sanctum'], function() {
+Route::prefix('api/v1')->group(['middleware' => 'auth:sanctum'], function() {
 
 
     // Task 12: Manage tasks with endpoint /api/v1/tasks/*****.
     // Keep in mind that prefix should be /api/v1.
     // Add ONE line to assign 5 resource routes to TaskController
     // Put one code line here below
-    Route::prefix('/api/v1/')->apiresource('tasks',TaskController::class);
+    
+    Route::apiResource('tasks',TaskController::class);
+
 
 
 
