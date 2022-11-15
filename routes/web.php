@@ -41,6 +41,7 @@ Route::view("/about",  function()
 {
     return view('pages.about');
     
+    
 })->name('about');
 
 Route::get('users/{id}', function ($id) {
