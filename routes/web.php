@@ -36,7 +36,7 @@ Route::get("/user/{name}", [UserController::class, 'show']);
 // Also, assign the route name "about"
 // Put one code line here below
 
-Route::view("/about", 'resources/views/pages/about.blade.php')->name('about');
+Route::get("/about", 'resources/views/pages/about.blade.php')->name('about');
 
 
 
