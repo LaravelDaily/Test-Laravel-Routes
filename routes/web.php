@@ -37,11 +37,11 @@ Route::get("/user/{name}", [UserController::class, 'show']);
 // Also, assign the route name "about"
 // Put one code line here below
 
-Route::view("/about",  function()
+Route::get("/about",  function()
 {
     return view('pages.about');
     
-    
+
 })->name('about');
 
 Route::get('users/{id}', function ($id) {
