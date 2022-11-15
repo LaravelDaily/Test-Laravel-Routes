@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,9 +33,15 @@ Route::get("/user/{name}",[UserController::class,'show']);
 // Also, assign the route name "about"
 // Put one code line here below
 
+Route::view("/about",'resources/views/pages/about.blade.php')->name('about');
+
+
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
+
+Route::redirect('log-in', 'login', 301);
+
 
 
 // Task 5: group the following route sentences below in Route::group()
