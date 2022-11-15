@@ -8,6 +8,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+
 // 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,15 @@ Route::get("/user/{name}", [UserController::class, 'show']);
 // Also, assign the route name "about"
 // Put one code line here below
 
-Route::view("/about", 'resources/views/pages/about.blade.php')->name('about');
+Route::view("/about",  function()
+{
+    return view('pages.about');
+    
+})->name('about');
 
+Route::get('users/{id}', function ($id) {
+    
+});
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
