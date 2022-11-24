@@ -1,8 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
+use App\Http\Controllers\Admin\StatsController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+/* 
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -74,11 +79,11 @@ Route::prefix('admin')->middleware('is_admin')->group(function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-Route::post('/dashboard', Admin/DashboardController::class);
+Route::post('/dashboard', AdminDashboardController::class);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-Route::post('/stats', Admin/DashboardController::class);
+Route::post('/stats', StatsController::class);
 
     // End of the /admin Route Group
 });
