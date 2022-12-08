@@ -81,10 +81,10 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/stats', \App\Http\Controllers\Admin\StatsController::class);
 
     // End of the /admin Route Group
-            });
+    });
 
 // End of the main Authenticated Route Group
-
+    });
 // One more task is in routes/api.php
 
 require __DIR__.'/auth.php';
