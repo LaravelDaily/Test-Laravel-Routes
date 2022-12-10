@@ -62,7 +62,7 @@ Route::group(['prefix' => 'app'], function (){
 // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
 // Assign the route name "dashboard"
 // Put one Route Group code line here below
-Route::get('/dashboard', DashboardController::class)->name('dashboard');
+Route::get('/dashboard', DashboardController::class, '__invoke')->name('dashboard');
 
 
 // Task 8: Manage tasks with URL /app/tasks/***.
