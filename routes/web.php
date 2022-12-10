@@ -78,7 +78,7 @@ Route::resource('tasks', TaskController::class);
 // Add a group for routes with URL prefix "admin"
 // Assign middleware called "is_admin" to them
 // Put one Route Group code line here below
-Route::group(["middleware" => "auth","prefix" => "admin"], function() {
+Route::group(["middleware" => "is_admin","prefix" => "admin"], function() {
 
 // Tasks inside that /admin group:
 
