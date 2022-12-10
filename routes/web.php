@@ -70,8 +70,8 @@ Route::get('/dashboard', DashboardController::class, '__invoke')->name('dashboar
 // Put one code line here below
 Route::resource('tasks', TaskController::class);
 
-});
 // End of the /app Route Group
+});
 
 
 // Task 9: /admin group within a group
@@ -92,8 +92,8 @@ Route::get("/dashboard", AdminDashboardController::class);
 // Put one code line here below
 Route::get("/stats", StatsController::class);
 
-});
 // End of the /admin Route Group
+});
 
 // End of the main Authenticated Route Group
 });
