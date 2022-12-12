@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', function(){
+return redirect('index');
+});
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
 
