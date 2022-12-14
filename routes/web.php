@@ -1,10 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\TaskController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,12 +14,12 @@ use App\Http\Controllers\TaskController;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
-Route::get("/", [HomeController::class, 'index']);
+Route::get("/", [App\Http\Controllers\HomeController::class, 'index']);
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
-Route::get('/user/{name}', [UserController::class, 'show']);
+Route::get('/user/{name}', [App\Http\Controllers\UserController::class, 'show']);
 
 
 // Task 3: point the GET URL "/about" to the view
@@ -42,8 +38,8 @@ Route::middleware(['auth'])->group(function () {
     // Assign middleware "auth"
     // Put one Route Group code line here below
     Route::group(['prefix' => 'app'], function () {
-        Route::get('dashboard', [DashboardController::class, 'dashboard']);
-        Route::resource('tasks', TaskController::class);
+        Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard']);
+        Route::resource('tasks', App\Http\Controllers\TaskController::class);
     });
     Route::group(['prefix' => 'admin',  'middleware' => ['is_admin']], function () {
         Route::get('dashboard', App\Http\Controllers\Admin\DashboardController::class);
