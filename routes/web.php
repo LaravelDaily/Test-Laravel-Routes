@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
     // Assign middleware "auth"
     // Put one Route Group code line here below
     Route::group(['prefix' => 'app'], function () {
-        Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard']);
+        Route::get('dashboard', App\Http\Controllers\DashboardController::class)->name('dashboard');
         Route::resource('tasks', App\Http\Controllers\TaskController::class);
     });
     Route::group(['prefix' => 'admin',  'middleware' => ['is_admin']], function () {
