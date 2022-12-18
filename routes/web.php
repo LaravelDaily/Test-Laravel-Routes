@@ -80,8 +80,8 @@ Route::redirect('/log-in', '/login');
 //     })->name('admin');
 //     // End of the /admin Route Group
 
-    // End of the main Authenticated Route Group
-});
+// End of the main Authenticated Route Group
+// });
 
 // One more task is in routes/api.php
 
