@@ -22,15 +22,15 @@ Route::get('/', [\app\Http\Controllers\HomeController::class, 'index']);
 // Put one code line here below
 Route::get('/user/{name}', [\app\Http\Controllers\UserController::class, 'show']);
 
-// Task 3: point the GET URL "/about" to the view
-// resources/views/pages/about.blade.php - without any controller
-// Also, assign the route name "about"
-// Put one code line here below
-Route::view('about', 'pages.about');
+// // Task 3: point the GET URL "/about" to the view
+// // resources/views/pages/about.blade.php - without any controller
+// // Also, assign the route name "about"
+// // Put one code line here below
+// Route::view('about', 'pages.about');
 
-// Task 4: redirect the GET URL "log-in" to a URL "login"
-// Put one code line here below
-Route::redirect('/log-in', '/login');
+// // Task 4: redirect the GET URL "log-in" to a URL "login"
+// // Put one code line here below
+// Route::redirect('/log-in', '/login');
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
