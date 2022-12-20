@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Api\V1\TaskController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,19 +23,21 @@ Route::get('/', 'HomeController@index');
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
-Route::get('users/{name}', 'UserController@show');
+Route::get('/users/{name}', 'UserController@show');
 
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-Route::view('about', 'resources/views/pages/about.blade.php')->name('about');
+Route::view('about', function () {
+    return view('pages.about');
+})->name('about');
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::redirect('log-in', 'login');
+Route::redirect('/log-in', '/login');
 
 
 // Task 5: group the following route sentences below in Route::group()
@@ -79,12 +82,12 @@ Route::middleware('auth')->group(function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('dashbourd', DashboardController::class);
+        Route::get('dashbourd', \Admin\DashboardController::class);
 
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('stats', DashboardController::class);
+        Route::get('stats', \Admin\StatsController::class);
 
 
     });
@@ -96,3 +99,4 @@ Route::middleware('auth')->group(function () {
 // One more task is in routes/api.php
 
 require __DIR__.'/auth.php';
+
