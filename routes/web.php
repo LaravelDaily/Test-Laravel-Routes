@@ -9,7 +9,6 @@ use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
-@@ -15,69 +21,69 @@
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
