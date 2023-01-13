@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  testlaravelroutes:
+    image: testlaravelroutes
+    build:
+      context: .
+      dockerfile: ./Dockerfile
