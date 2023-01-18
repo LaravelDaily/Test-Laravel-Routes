@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\StatsController;
+use App\Http\Controllers\DashboardController as dashboard;
+use App\Http\Controllers\Admin\DashboardController as adminDashboard;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
@@ -17,21 +19,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
-Route::get('/user/{name}', 'UserController@show');
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/user/{name}', [UserController::class, 'show']);
+
 Route::view('/about', 'pages.about')->name('about');
+
 Route::get('log-in', function () {
     return redirect()->to('login');
 });
-Route::group(['middleware' => 'auth'], function () {
-    Route::group(['prefix' => 'app'], function () {
-        Route::get('/dashboard', 'DashboardController');
-        Route::resource('/tasks', 'TaskController');
+
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('app')->group(function () {
+        Route::get('/dashboard', [dashboard::class, 'index']);
+        Route::resource('/tasks', TaskController::class);
     });
 
-    Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function () {
-        Route::get('/dashboard', 'App\Http\Controllers\Admin\DashboardController');
-        Route::resource('/stats', 'App\Http\Controllers\Admin\StatsController');
+    Route::prefix('admin')->middleware(['is_admin'])->group(function () {
+        Route::get('/dashboard', [adminDashboard::class, 'index']);
+        Route::resource('/stats', StatsController::class);
     });
 });
 
