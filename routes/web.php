@@ -17,21 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/user/{name}', [UserController::class, 'show']);
+Route::get('/', 'HomeController@index');
+Route::get('/user/{name}', 'UserController@show');
 Route::view('/about', 'pages.about')->name('about');
 Route::get('log-in', function () {
     return redirect()->to('login');
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'app'], function () {
-        Route::get('/dashboard', [DashboardController::class, '__invoke']);
-        Route::resource('/tasks', TaskController::class);
+        Route::get('/dashboard', 'DashboardController');
+        Route::resource('/tasks', 'TaskController');
     });
 
     Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function () {
-        Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, '__invoke']);
-        Route::resource('/stats', [App\Http\Controllers\Admin\StatsController::class, '__invoke']);
+        Route::get('/dashboard', 'App\Http\Controllers\Admin\DashboardController');
+        Route::resource('/stats', 'App\Http\Controllers\Admin\StatsController');
     });
 });
 
