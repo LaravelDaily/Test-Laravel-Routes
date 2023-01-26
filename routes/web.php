@@ -71,7 +71,7 @@ Route::resource('tasks', \App\Http\Controllers\TaskController::class);
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
 
-Route::middleware('is_admin')->prefix('admin')->namespace('Admin')->group(function(){
+Route::middleware('is_admin')->prefix('admin')->group(function(){
 
 
         // Tasks inside that /admin group:
