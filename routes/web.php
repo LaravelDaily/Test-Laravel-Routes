@@ -36,7 +36,7 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // Put one code line here below
 Route::get('/about', function(){
     return view('pages.about');
-});
+})->name('about');
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
@@ -48,13 +48,9 @@ Route::redirect('log-in','login');
 // Put one Route Group code line here below
 Route::middleware('auth')->group(function(){
     Route::prefix('app')->group(function(){
-        Route::get('/dashboard',[DashboardController::class]);
-//        Route::prefix('tasks')->group(function(){
-//            Route::resource()
-//        });
+        Route::get('/dashboard',[DashboardController::class])->name('dashboard');
         Route::resource('tasks',TaskController::class );
     });
-
 });
     // Tasks inside that Authenticated group:
 
@@ -93,8 +89,8 @@ Route::middleware('auth')->group(function(){
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
     Route::middleware('is_admin')->prefix('admin')->group(function(){
-        Route::get('Admin.dashboard',[DashAdminController::class]);
-        Route::get('Admin.stats',[StatsController::class]);
+        Route::get('dashboard',[DashAdminController::class]);
+        Route::get('stats',[StatsController::class]);
     });
 
 
