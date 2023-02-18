@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Admin\StatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,11 +75,11 @@ Route::middleware('auth')->group(function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get("dashboard",App\Http\Controllers\Admin\DashboardController::class);
+        Route::get("dashboard", App\Http\Controllers\Admin\DashboardController::class);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Router::get("stats", App\Http\Controllers\Admin\StatsController::class);
+        Router::get("stats", StatsController::class);
 
     });
     // End of the /admin Route Group
