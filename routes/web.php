@@ -20,7 +20,8 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
 Route::get('/', function () {
-    return view('welcome');
+    $pageTitle = 'Homepage';
+    return view('welcome', compact('pageTitle'));
 });
 
 
@@ -58,7 +59,7 @@ Route::group([
     // Put one Route Group code line here below
 
     Route::group([
-        'prefix' => '/app'
+        'prefix' => 'app'
     ], function () {
         // Tasks inside that /app group:
 
@@ -80,7 +81,7 @@ Route::group([
 
 
     Route::group([
-        'prefix' => '/admin',
+        'prefix' => 'admin',
         'middleware' => 'is_admin',
     ], function () {
 

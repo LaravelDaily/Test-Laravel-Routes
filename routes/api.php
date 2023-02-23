@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group([
     'middleware' => 'auth:sanctum',
-    'prefix' => '/api/v1'
+    'prefix' => 'v1'
 ], function () {
 
     // Task 12: Manage tasks with endpoint /api/v1/tasks/*****.
