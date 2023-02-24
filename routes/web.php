@@ -6,7 +6,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\StatsController;
-use App\Http\Controllers\Admin;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-Route::view('/about', 'pages.about');
+Route::view('/about', 'pages.about')->name('about');;
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
@@ -53,14 +53,14 @@ Route::middleware('auth')->group(function () {
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
 
-    Route::prefix('app')->group(function () {
+    Route::prefix('/app')->group(function () {
         // Tasks inside that /app group:
 
 
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('/dashboard', DashboardController::class);
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');;
 
 
         // Task 8: Manage tasks with URL /app/tasks/***.
@@ -86,7 +86,7 @@ Route::middleware('auth')->group(function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/dashboard', Admin\DashboardController::class);
+        Route::get('/dashboard', AdminDashboardController::class);
 
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
