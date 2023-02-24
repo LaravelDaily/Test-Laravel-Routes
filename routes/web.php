@@ -20,10 +20,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
-Route::get('/', function () {
-    $pageTitle = 'Homepage';
-    return view('welcome', compact('pageTitle'));
-});
+Route::get('/', HomeController::class);
 
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
