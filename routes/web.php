@@ -34,14 +34,12 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-Route::get('/about', function () {
-    return view('pages.about');
-});
+Route::view('/about', 'pages.about');
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::redirect('/log-in', '/login');
+Route::permanentRedirect('/log-in', '/login');
 
 
 // Task 5: group the following route sentences below in Route::group()
