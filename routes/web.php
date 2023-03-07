@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/user/{name}', [UserController::class, 'show']);
 Route::view('/about', 'pages.about')->name('about');
+
 Route::redirect('/log-in', '/login');
 
 Route::middleware('auth')->group(function () {
