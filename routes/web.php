@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -47,7 +48,7 @@ Route::middleware('auth')->group(function () {
 
 // Tasks inside that /app group:
 
-
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
 // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
 // Assign the route name "dashboard"
 // Put one Route Group code line here below
