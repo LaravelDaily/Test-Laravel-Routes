@@ -30,7 +30,7 @@ Route::view('/about', 'pages.about');
 // Also, assign the route name "about"
 // Put one code line here below
 
-
+Route::redirect('/log-in', '/login');
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
 
