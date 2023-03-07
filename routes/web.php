@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,7 +54,7 @@ Route::middleware('auth')->group(function () {
 // Assign the route name "dashboard"
 // Put one Route Group code line here below
 
-
+        Route::resource('/tasks', TaskController::class);
 // Task 8: Manage tasks with URL /app/tasks/***.
 // Add ONE line to assign 7 resource routes to TaskController
 // Put one code line here below
