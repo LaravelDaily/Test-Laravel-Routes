@@ -16,11 +16,13 @@ class CreateUser extends Command
         $name = $this->argument('name');
         $email = $this->argument('email');
         $password = $this->argument('password');
+        $is_admin = $this->option('is_admin');
 
         $user = new User();
         $user->name = $name;
         $user->email = $email;
         $user->password = bcrypt($password);
+        $user->is_admin = $is_admin;
         $user->save();
 
         $this->info('User created successfully.');
