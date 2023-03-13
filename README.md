@@ -17,6 +17,17 @@ To test if all the routes work correctly, there are PHPUnit tests in `tests/Feat
 In the very beginning, if you run `php artisan test`, or `vendor/bin/phpunit`, all 8 tests fail.
 Your task is to make those tests pass.
 
+## To begin with
+
+Run `composer install`
+
+Run `php artisan migrate`
+
+Make a copy of `.env.example` to create your `.env` with the same content
+
+Open the page and generate the key with the helper button.
+
+You are now set to start 🙂
 
 ## How to Submit Your Solution
 
