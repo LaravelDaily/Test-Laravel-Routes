@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,12 +53,11 @@ Route::redirect('log-in', 'login');
     // Tasks inside that Authenticated group:
 
 
-Route::group(['middleware' => ['auth']], function () {
-
+    Route::middleware('auth')->group(function () {
     // Tasks inside that Authenticated group:
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    // Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 
 });
 
@@ -66,7 +67,15 @@ Route::group(['middleware' => ['auth']], function () {
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
 
-        // Tasks inside that /app group:
+    // Route::prefix('/app')->group(function () {
+
+    //         // Tasks inside that /app group:
+    //         Route::get('/dashboard', function () {
+    //             // Matches The "/admin/users" URL
+    //         });
+
+    // });
+
 
 
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
