@@ -27,3 +27,4 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 
         Route::resource('/tasks', \App\Http\Controllers\Api\V1\TaskController::class);
     });
+});
