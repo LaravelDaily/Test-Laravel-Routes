@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\StatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +31,7 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-Route::view('/about', 'resources/views/pages/about.blade.php')->name('about');
+Route::view('/about', '/pages/about')->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
