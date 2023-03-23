@@ -74,11 +74,11 @@ Route::middleware(['auth'])->group(function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::resource('dashboard', 'Admin/DashboardController');
+        Route::resource('dashboard', 'App\Http\Controllers\Admin/DashboardController');
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::resource('stats', 'Admin/StatsController');
+        Route::resource('stats', 'App\Http\Controllers\Admin/StatsController');
 
     // End of the /admin Route Group
     });
