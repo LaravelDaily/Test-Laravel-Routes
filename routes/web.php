@@ -18,12 +18,16 @@ use App\Http\Controllers\TaskController;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
-Route::view('/', 'HomeController@index');
+Route::view('/', [HomeController::class, 'index']);
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
+<<<<<<< HEAD
 Route::get('/user/{name}', 'UserController@show');
+=======
+Route::get('/user/{name}', [UserController::class, 'show']);
+>>>>>>> parent of 30b6809 (Update web.php)
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
@@ -74,11 +78,11 @@ Route::middleware(['auth'])->group(function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::resource('dashboard', 'App\Http\Controllers\Admin\DashboardController');
+        Route::resource('dashboard', 'App\Http\Controllers\Admin/DashboardController');
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::resource('stats', 'App\Http\Controllers\Admin\StatsController');
+        Route::resource('stats', 'App\Http\Controllers\Admin/StatsController');
 
     // End of the /admin Route Group
     });
