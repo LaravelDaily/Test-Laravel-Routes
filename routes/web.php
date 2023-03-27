@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
@@ -69,7 +70,7 @@ Route::middleware('auth')->group(function () {
 
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
-        Route::get('/dashboard', DashboardController::class);
+        Route::get('/dashboard', AdminDashboardController::class);
 
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
