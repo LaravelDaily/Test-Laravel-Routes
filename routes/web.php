@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,7 +60,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/tasks', TaskController::class);
     // End of the /app Route Group
 
-
+    });
     // Task 9: /admin group within a group
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
