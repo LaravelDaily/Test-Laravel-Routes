@@ -46,10 +46,10 @@ Route::group(['middleware'=>'auth'],function()
 {
     Route::group(['prefix'=>'app'],function()
     {
-        Route::get('/dashboard',[DashboardController::class])->name('dashboard');
+        Route::get('dashboard',[DashboardController::class])->name('dashboard');
         Route::resource('tasks',TaskController::class);
     });
-    Route::group(['prefix'=>'admin','middleware'=>'is_admin','namespace'=>'Admin/'],function()
+    Route::group(['prefix'=>'admin','middleware'=>'is_admin','namespace'=>'Admin'],function()
     {
         Route::get('dashboard',[DashboardController::class]);
         Route::get('stats',[StatsController::class]);

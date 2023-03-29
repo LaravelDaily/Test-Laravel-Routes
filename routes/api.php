@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +24,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     // Keep in mind that prefix should be /api/v1.
     // Add ONE line to assign 5 resource routes to TaskController
     // Put one code line here below
-    Route::group(['prefix'=>'/api/v1'],function()
+    Route::group(['prefix'=>'api/v1'],function()
     {
-        Route::resource('tasks',\App\Http\Controllers\TaskController::class);
+        Route::resource('tasks',TaskController::class)->only(['index','show','destroy','update','store']);
     });
 });
