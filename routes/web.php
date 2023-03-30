@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -45,7 +47,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/dashboard', [DashboardController::class])->name('dashboard');
         Route::resource('/tasks', TaskController::class);
     });
+    Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function () {
+        Route::get('/dashboard', [AdminDashboardController::class]);
+        Route::get('/stats', [StatsController::class]);
+    });
 });
+
 // Tasks inside that Authenticated group:
 
 // Task 6: /app group within a group
