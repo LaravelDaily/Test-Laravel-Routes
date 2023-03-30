@@ -48,8 +48,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/tasks', TaskController::class);
     });
     Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function () {
-        Route::get('/dashboard', [AdminDashboardController::class]);
-        Route::get('/stats', [StatsController::class]);
+        Route::get('/dashboard', AdminDashboardController::class);
+        Route::get('/stats', StatsController::class);
     });
 });
 
