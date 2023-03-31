@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\StatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,48 +41,38 @@ Route::redirect('/log-in', '/login');
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-
+Route::group(['middleware' => 'auth'], ( function() {
     // Tasks inside that Authenticated group:
 
     // Task 6: /app group within a group
-    // Add another group for routes with prefix "app"
+    // Add another group forp routes with refix "app"
     // Put one Route Group code line here below
-
+    Route::prefix('app')->group( function() {
         // Tasks inside that /app group:
 
 
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-
+        Reoute::get('/dashboard', [DashboardController::class])->name('dashboard');
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-
+        Route::resource('/tasks', TaskController::class);
     // End of the /app Route Group
-
+    });
 
     // Task 9: /admin group within a group
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-
-
-        // Tasks inside that /admin group:
-
-
-        // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
-        // Put one code line here below
-
-
-        // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
-        // Put one code line here below
-
-
-    // End of the /admin Route Group
-
+    Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function () {
+        Route::get('/dashboard', AdminDashboardController::class);
+        Route::get('/stats', StatsController::class);
+    });
 // End of the main Authenticated Route Group
+}));
 
 // One more task is in routes/api.php
 
