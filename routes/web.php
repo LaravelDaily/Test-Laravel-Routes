@@ -28,7 +28,7 @@ Route::get('/user/{$name}', [UserController::class,'show']);
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 Route::get('/about', function () {
-    return view('about')
+    return view('about');
 });
 
 
