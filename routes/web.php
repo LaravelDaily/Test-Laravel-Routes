@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Http\Controllers;
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
@@ -60,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('/app/dashboard', DashboardController::class)->name('dashboard');
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
         
         
         // Task 8: Manage tasks with URL /app/tasks/***.
@@ -84,12 +82,12 @@ Route::middleware(['auth'])->group(function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/admin/dashboard', DashController::class);    
+        Route::get('/dashboard', DashController::class);    
 
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-            Route::get('/admin/stats', StatsController::class); 
+            Route::get('/stats', StatsController::class); 
 
         });
     // End of the /admin Route Group
