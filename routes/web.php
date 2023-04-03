@@ -9,12 +9,29 @@ use App\Http\Controllers\Admin\DashboardController as DashController;
 use App\Http\Controllers\Admin\StatsController;
 
 
-// Task 1: point the main "/" URL to the HomeController method "index"
 Route::get("/", [HomeController::class,"index"]);
 
-
-// Task 2: point the GET URL "/user/[name]" to the UserController method "show"
-// It doesn't use Route Model Binding, it expects $name as a parameter
 Route::get('/user/{name}', [UserController::class,'show']);
+
+Route::get('/about', function () {
+    return view('pages.about');
+})->name('about');
+
+Route::redirect('/login', '/log-in');
+
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('app')->group(function () {
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
+        Route::resource('tasks', TaskController::class);
+    });
+    Route::middleware(['is_admin'])->group(function () {
+        Route::prefix('admin')->group(function () {
+            Route::get('/dashboard', DashController::class);
+            Route::get('/stats', StatsController::class);
+        });
+    });
+});
+
+// One more task is in routes/api.php
 
 require __DIR__.'/auth.php';
