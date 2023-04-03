@@ -22,7 +22,13 @@ Route::redirect('/login', '/log-in');
 Route::middleware(['auth'])->group(function () {
     Route::prefix('app')->group(function () {
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
-        Route::resource('tasks', TaskController::class);
+        Route::resource('/tasks', TaskController::class);
+    });
+    Route::middleware(['is_admin'])->group(function () {
+        Route::prefix('admin')->group(function () {
+            Route::get('/dashboard', DashController::class);
+            Route::get('/stats', StatsController::class);
+        });
     });
 });
 
