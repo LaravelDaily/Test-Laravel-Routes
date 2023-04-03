@@ -20,9 +20,9 @@ use App\Http\Controllers\Admin\StatsController;
 */
 
 // Task 1: point the main "/" URL to the HomeController method "index"
-Route::get('/', [HomeController::class,'index']);
+Route::get("/", [HomeController::class,"index"]);
 
-
+/*
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 Route::get('/user/{name}', [UserController::class,'show']);
@@ -95,6 +95,7 @@ Route::middleware(['auth'])->group(function () {
 
 // End of the main Authenticated Route Group
 });
+*/
 
 // One more task is in routes/api.php
 
