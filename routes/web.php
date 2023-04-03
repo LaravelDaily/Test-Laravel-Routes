@@ -32,6 +32,4 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-// One more task is in routes/api.php
-
 require __DIR__.'/auth.php';
