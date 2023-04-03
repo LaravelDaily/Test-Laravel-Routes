@@ -24,12 +24,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::resource('tasks', TaskController::class);
     });
-    Route::middleware(['is_admin'])->group(function () {
-        Route::prefix('admin')->group(function () {
-            Route::get('/dashboard', DashController::class);
-            Route::get('/stats', StatsController::class);
-        });
-    });
 });
 
 require __DIR__.'/auth.php';
