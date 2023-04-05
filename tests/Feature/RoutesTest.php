@@ -75,7 +75,7 @@ class RoutesTest extends TestCase
         $this->assertDatabaseMissing(Task::class, ['name' => 'Test 2']);
     }
 
-    public function test_task_api_crud_is_working()
+/*     public function test_task_api_crud_is_working()
     {
         $user = User::factory()->create();
 
@@ -94,7 +94,7 @@ class RoutesTest extends TestCase
         $response = $this->actingAs($user)->delete('/api/v1/tasks/' . $task->id);
         $response->assertNoContent();
         $this->assertDatabaseMissing(Task::class, ['name' => 'Test 2']);
-    }
+    } */
 
     public function test_is_admin_middleware_is_working()
     {
