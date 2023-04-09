@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function() {
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
+    Route::group(['prefix' => 'app'], function() {
+
 
         // Tasks inside that /app group:
 
@@ -60,7 +62,7 @@ Route::middleware('auth')->group(function() {
         // Put one code line here below
 
     // End of the /app Route Group
-
+    });
 
     // Task 9: /admin group within a group
     // Add a group for routes with URL prefix "admin"
