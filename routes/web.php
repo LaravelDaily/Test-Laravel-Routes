@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\StatsController;
+use App\Http\Controllers\Api\V1\TaskController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,23 +27,33 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
-// Route::get('/user/{name}', [UserController::class, 'show']);
+Route::get('/user/{name}', [UserController::class, 'show'])->name('user.name');
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-// Route::
+Route::view('/about', 'pages.about')->name('about');
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-
+Route::redirect('log-in', 'login');
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('/app')->group(function () {
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
+        Route::resource('/task', TaskController::class);
+    });
 
+    Route::prefix('/admin')->middleware(['is_admin'])->group(function () {
+        Route::get('/dashboard', [DashboardController::class]);
+        Route::get('/stats', StatsController::class);
+    });
+});
 // Tasks inside that Authenticated group:
 
 // Task 6: /app group within a group
