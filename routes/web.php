@@ -21,7 +21,7 @@ Route::get('/', HomeController::class)->name('home');
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
-// Put one code line here below
+// Put one code line here belo
 
 Route::get('/user/{name}', [App\Http\Controllers\UserController::class, 'show'])->name('user');
 
