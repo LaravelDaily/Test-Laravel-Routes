@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/testing
+*/testing second test
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
