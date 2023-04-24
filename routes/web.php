@@ -7,7 +7,15 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
-@@ -16,68 +20,89 @@
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
 
@@ -24,6 +32,7 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
+
 // Put one code line here below
 
 Route::get('/about', function () {
@@ -51,9 +60,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'app'], function () {
 
         // Tasks inside that /app group:
-
-
-        // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
+        
+           // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
 
@@ -84,18 +92,18 @@ Route::group(['middleware' => 'auth'], function () {
         // Put one code line here below
 
         Route::get('dashboard', \App\Http\Controllers\Admin\DashboardController::class);
-
-        // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
+          // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
 
         Route::get('stats', \App\Http\Controllers\Admin\StatsController::class);
     });
 
 });
-      
-    // End of the /admin Route Group
+
+// End of the /admin Route Group
 
 // End of the main Authenticated Route Group
 
 // One more task is in routes/api.php
+
 require __DIR__ . '/auth.php';
