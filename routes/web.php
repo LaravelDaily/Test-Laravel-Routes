@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
         // Put one code line here below
         Route::resource('tasks', TaskController::class);
     // End of the /app Route Group
-    }):
+    });
 
 
     // Task 9: /admin group within a group
