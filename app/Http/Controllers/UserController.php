@@ -6,7 +6,7 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function show($name)
+    public function show(User $name)
     {
         $user = User::where('name', $name)->first();
         if (!$user) {
