@@ -26,21 +26,19 @@ Route::get('/', [HomeController::class, 'index']);
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
-Route::get('/user/{user:name}', [UserController::class, 'show'])->name('users.show');
+Route::get('/user/{name}', [UserController::class, 'show']);
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
 Route::get('/about', function () {
-    return view('pages.about')->name('pages.about');
+    return view('pages.about')->name('about');
 });
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::get('/log-in', function () {
-    return redirect('/login');
-});
+Route::get('/log-in', '/login');
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
@@ -61,7 +59,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'app'], function () {
     // Assign the route name "dashboard"
     // Put one Route Group code line here below
 
-    Route::get('/dashboard', [DashboardController::class]);
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     // Task 8: Manage tasks with URL /app/tasks/***.
     // Add ONE line to assign 7 resource routes to TaskController
@@ -85,11 +83,11 @@ Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function () {
     // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
     // Put one code line here below
 
-    Route::get('/dashboard', [AdminDashboardController::class]);
+    Route::get('/dashboard', AdminDashboardController::class)->name('admin.dashboard');
 
     // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
     // Put one code line here below
-    Route::get('/stats', [StatsController::class]);
+    Route::get('/stats', StatsController::class)->name('admin.stats');
 });
 
 // End of the /admin Route Group
