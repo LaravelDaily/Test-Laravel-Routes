@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\DashboardController as adminDashboard;
+use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\TaskController;
 
 /*
@@ -80,7 +82,7 @@ Route::group(['middleware' => 'auth'], function(){
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
 
-    Route::group(['prefix' => 'admin', 'middleware' => 'is_admin', 'namespace' => 'Admin', 'as' => 'adminDashboard'], function(){
+    Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function(){
 
         // Tasks inside that /admin group:
 
@@ -88,7 +90,7 @@ Route::group(['middleware' => 'auth'], function(){
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
 
-        Route::get('dashboard', DashboardController::class);
+        Route::get('dashboard', adminDashboard::class);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
