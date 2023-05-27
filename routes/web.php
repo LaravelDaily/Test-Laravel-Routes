@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Api\V1\TaskController;
+use App\Http\Controllers\Admin;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function() {
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-        Route::resource('tasks', TaskController::class);
+        Route::resource('/tasks', TaskController::class);
     // End of the /app Route Group;
     });
     // Task 9: /admin group within a group
@@ -71,11 +71,11 @@ Route::group(['middleware' => 'auth'], function() {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/dashboard', AdminDashboardController::class);
+        Route::get('/dashboard', Admin\DashboardController::class);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('/stats', AdminDashboardController::class);
+        Route::get('/stats', Admin\StatsController::class);
 
     // End of the /admin Route Group
     });
