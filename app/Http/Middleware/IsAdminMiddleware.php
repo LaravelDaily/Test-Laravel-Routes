@@ -10,11 +10,11 @@ class IsAdminMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param Request $request
+     * @param Closure $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         abort_if(!auth()->user()->is_admin, 403);
         if (!auth()->user()->is_admin) {
