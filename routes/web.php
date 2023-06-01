@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
-Route::get('/user/{name}', [UserController::class, 'show']);
+Route::get('/user/{name}', [App\Http\Controllers\UserController::class, 'show']);
 
 
 // Task 3: point the GET URL "/about" to the view
@@ -59,13 +60,13 @@ Route::group(['middleware' => 'auth'], function(){
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('/app/dashboard', [DashboardController::class, '__invoke'])->name('dashboard');
+        Route::get('/app/dashboard', [App\Http\Controllers\DashboardController::class, '__invoke'])->name('dashboard');
 
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-        Route::resource('/app/tasks', TaskController::class);
+        Route::resource('/app/tasks', App\Http\Controllers\TaskController::class);
 
     // End of the /app Route Group
 
@@ -84,12 +85,12 @@ Route::group(['middleware' => 'auth'], function(){
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/admin/dashboard', [Admin\DashboardController::class, '__invoke']);
+        Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, '__invoke']);
 
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('/admin/stats', [Admin\StatsController::class, '__invoke']);
+        Route::get('/admin/stats', [App\Http\Controllers\Admin\StatsController::class, '__invoke']);
 
 
     // End of the /admin Route Group
