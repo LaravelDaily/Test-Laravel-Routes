@@ -59,7 +59,7 @@ Route::group(['middleware' => 'auth'], function(){
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('/app/dashboard', DashboardController::class)->name('dashboard');
+        Route::get('/app/dashboard', [DashboardController::class, '__invoke'])->name('dashboard');
 
 
         // Task 8: Manage tasks with URL /app/tasks/***.
@@ -84,12 +84,12 @@ Route::group(['middleware' => 'auth'], function(){
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/admin/dashboard', Admin\DashboardController::class);
+        Route::get('/admin/dashboard', [Admin\DashboardController::class, '__invoke']);
 
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('/admin/stats', Admin\StatsController::class);
+        Route::get('/admin/stats', [Admin\StatsController::class, '__invoke']);
 
 
     // End of the /admin Route Group
