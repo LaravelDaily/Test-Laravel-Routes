@@ -92,7 +92,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function(){
 Route::group('prefix' => 'admin', 'middleware' => 'is_admin', function(){
      Roue::get('/admin/dashboard', App\Http\Controllers\Admin\DashboardController::calss);
      Roue::get('/admin/stats', App\Http\Controllers\Admin\StatsController::calss);
-    }) 
+    }); 
 
     // End of the /admin Route Group
 
