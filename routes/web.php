@@ -50,7 +50,6 @@ Route::redirect('/log-in', '/login', 301);
 //     });
         // Tasks inside that /app group:
 
-
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
