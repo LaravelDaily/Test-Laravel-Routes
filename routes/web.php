@@ -89,10 +89,12 @@ Route::redirect('/log-in', '/login', 301);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-Route::group('prefix' => 'admin', 'middleware' => 'is_admin', function(){
-     Roue::resource('/admin/dashboard', App\Http\Controllers\Admin\DashboardController::calss);
-     Roue::resource('/admin/stats', App\Http\Controllers\Admin\StatsController::calss);
-    }); 
+
+Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function () {
+    Route::resource('dashboard', 'App\Http\Controllers\Admin\DashboardController');
+    Route::resource('stats', 'App\Http\Controllers\Admin\StatsController');
+});
+
 
     // End of the /admin Route Group
 
