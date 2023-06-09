@@ -37,17 +37,17 @@ Route::redirect('/log-in', '/login', 301);
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::group(['middleware' => 'auth'], function(){
-});
+// Route::group(['middleware' => 'auth'], function(){
+// });
     // Tasks inside that Authenticated group:
 
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
-    Route::group(['middleware' => 'auth'], function(){
-        Route::group(['prefix' => 'app'], function(){
-        });    
-    });
+//     Route::group(['middleware' => 'auth'], function(){
+//         Route::group(['prefix' => 'app'], function(){
+//         });    
+//     });
         // Tasks inside that /app group:
 
 
@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth'], function(){
         // Put one Route Group code line here below
          Route::group(['middleware' => 'auth'], function(){
             Route::group(['prefix' => 'app'], function(){
-                Route::get('/app/dashboard', [ DashboardController::class])->name('dashboard');
+                Route::resource('/app/dashboard', [DashboardController::class])->name('dashboard');
             });
              });
         
@@ -75,23 +75,23 @@ Route::group(['middleware' => 'auth'], function(){
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-Route::group([ 'prefix' => 'admin', 'middleware' => 'is_admin'], function(){
-});
+// Route::group([ 'prefix' => 'admin', 'middleware' => 'is_admin'], function(){
+// });
 
         // Tasks inside that /admin group:
 
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function(){
-    Roue::get('/admin/dashboard', App\Http\Controllers\Admin\DashboardController::calss);
-})
+// Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function(){
+//     Roue::resource('/admin/dashboard', App\Http\Controllers\Admin\DashboardController::calss);
+// })
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
 Route::group('prefix' => 'admin', 'middleware' => 'is_admin', function(){
-     Roue::get('/admin/dashboard', App\Http\Controllers\Admin\DashboardController::calss);
-     Roue::get('/admin/stats', App\Http\Controllers\Admin\StatsController::calss);
+     Roue::resource('/admin/dashboard', App\Http\Controllers\Admin\DashboardController::calss);
+     Roue::resource('/admin/stats', App\Http\Controllers\Admin\StatsController::calss);
     }); 
 
     // End of the /admin Route Group
