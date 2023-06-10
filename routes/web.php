@@ -61,7 +61,7 @@ Route::redirect('/log-in', '/login', 301);
         // Put one code line here below
 Route::group(['middleware' => 'auth'], function(){
      Route::group(['prefix' => 'app'], function(){
-        Route::resource('dashboard', App\Http\Controllers\DashboardController::class)->names('dashboard');
+        Route::resource('/', App\Http\Controllers\DashboardController::class)->names('dashboard');
         Route::resource('/tasks', App\Http\Controllers\TaskController::class);
     });
 });
