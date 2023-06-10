@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
-Route::get('/',[HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
@@ -26,9 +26,9 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-Route::get('/about', function(){
-return view('pages.about')->name('about');
-});
+Route::get('/about', function () {
+    return view('pages.about');
+})->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
@@ -59,9 +59,9 @@ Route::redirect('/log-in', '/login', 301);
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-Route::group(['middleware' => 'auth'], function(){
-     Route::group(['prefix' => 'app'], function(){
-        Route::resource('/', App\Http\Controllers\DashboardController::class)->names('dashboard');
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'app'], function () {
+        Route::get('/dashboard', App\Http\Controllers\DashboardController::class)->name('dashboard');
         Route::resource('/tasks', App\Http\Controllers\TaskController::class);
     });
 });
@@ -88,10 +88,9 @@ Route::group(['middleware' => 'auth'], function(){
         // Put one code line here below
 
 Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function () {
-    Route::resource('dashboard', 'App\Http\Controllers\Admin\DashboardController');
-    Route::resource('stats', 'App\Http\Controllers\Admin\StatsController');
+    Route::get('/dashboard', 'App\Http\Controllers\Admin\DashboardController')->name('admin.dashboard');
+    Route::get('/stats', 'App\Http\Controllers\Admin\StatsController')->name('admin.stats');
 });
-
 
     // End of the /admin Route Group
 
