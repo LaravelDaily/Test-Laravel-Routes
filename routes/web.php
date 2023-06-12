@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
+
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
@@ -33,31 +35,33 @@ Route::get('/about', fn() => view('pages.about'))->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-
+Route::get('log-in', fn() => redirect('login'));
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
 
-    // Tasks inside that Authenticated group:
 
+Route::group(['middleware' => 'auth'], function () {
+
+    // Tasks inside that Authenticated group:
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
 
-        // Tasks inside that /app group:
+    // Tasks inside that /app group:
 
-
+    Route::group(['prefix' => 'app'], function () {
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('/app/dashboard', [DashboardController::class, '__invoke'])->name('dashboard');
-
+        Route::get('dashboard', [DashboardController::class, '__invoke'])->name('dashboard');
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-
+        Route::resource('tasks', TaskController::class);
+    });
     // End of the /app Route Group
 
 
@@ -67,19 +71,18 @@ Route::get('/about', fn() => view('pages.about'))->name('about');
     // Put one Route Group code line here below
 
 
-        // Tasks inside that /admin group:
+    // Tasks inside that /admin group:
 
 
-        // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
-        // Put one code line here below
+    // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
+    // Put one code line here below
 
 
-        // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
-        // Put one code line here below
-
+    // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
+    // Put one code line here below
 
     // End of the /admin Route Group
-
+});
 // End of the main Authenticated Route Group
 
 // One more task is in routes/api.php
