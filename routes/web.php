@@ -49,7 +49,7 @@ Route::get('/log-in', function () {
 // Assign middleware "auth"
 // Put one Route Group code line here below
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('app')->group(function () {
         Route::get("/dashboard", DashboardController::class);
         Route::resource("/tasks", TaskController::class);
