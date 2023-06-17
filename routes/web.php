@@ -42,7 +42,7 @@ Route::get('/about', function () {
 // Put one code line here below
 Route::get('/log-in', function () {
     return redirect()->to("/login");
-);
+});
 
 
 // Task 5: group the following route sentences below in Route::group()
