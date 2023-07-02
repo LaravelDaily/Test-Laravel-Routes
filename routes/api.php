@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     // Put one code line here below
 
     Route::prefix('v1')->group(function(){
-        Route::apiresource('photos', PhotoController::class);
+        Route::apiresource('tasks', TaskController::class);
     });
 
 });
