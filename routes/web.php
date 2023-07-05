@@ -30,7 +30,7 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // Put one code line here below
 
 Route::get('/about', function () {
-    return view('resources/views/pages/about.blade.php');
+    return view('pages/about.blade.php');
 })->name('about');
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
