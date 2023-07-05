@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,9 @@ Route::get('user/{name}', [UserController::class, 'show']);
 // Also, assign the route name "about"
 // Put one code line here below
 
-
+Route::get('/about', function () {
+    return View::make('pages/about.blade.php');
+});
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
 
