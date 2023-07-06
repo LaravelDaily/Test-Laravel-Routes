@@ -41,7 +41,7 @@ Route::redirect('/log-in', '/login');
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth'])->group(function(){
 
     // Tasks inside that Authenticated group:
 
