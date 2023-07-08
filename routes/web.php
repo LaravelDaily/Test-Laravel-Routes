@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Admin\DashboardController as AdminDash;
+use App\Http\Controllers\Admin\StatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +37,7 @@ Route::get('/about', function() {
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-//Route::get('/log-in', '/login');
+Route::redirect('log-in', 'login');
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
@@ -47,8 +49,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/tasks', TaskController::class); // ???
     });
     Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function () {
-        Route::get('/dashboard', App\Http\Controllers\Admin\DashboardController::class)->name('dashboard'); // ???
-        Route::resource('/stats', App\Http\Controllers\Admin\StatsController::class); // ???
+        Route::get('/dashboard', AdminDash::class)->name('dashboard'); // ???
+        Route::resource('/stats', StatsController::class); // ???
     });
 
 });
