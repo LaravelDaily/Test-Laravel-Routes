@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -75,9 +75,7 @@ Route::prefix('app')->group(function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::namespace('Admin')->group(function () {
-            Route::resource('/admin/dashboard', 'DashboardController');
-        });
+        Route::get('/dashboard', AdminDashboardController::class);
         
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
