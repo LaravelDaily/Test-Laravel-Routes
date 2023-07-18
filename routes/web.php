@@ -76,7 +76,7 @@ Route::prefix('app')->group(function () {
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
         Route::namespace('Admin')->group(function () {
-            Route::resource('/dashboard', 'DashboardController');
+            Route::resource('/admin/dashboard', 'DashboardController');
         });
         
 
