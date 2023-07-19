@@ -75,20 +75,20 @@ Route::prefix('app')->group(function () {
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-       Route::prefix('admin')->middleware('is_admin')->group(function() {
+       Route::prefix('admin')->group(function() {
     
         // Tasks inside that /admin group:
 
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::resource('/dashboard' , AdminDashboardController::class);
+        Route::resource('/admin/dashboard' , AdminDashboardController::class);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
             Route::resource('/stats' , StatsController::class);
 
-   }); // End of the /admin Route Group
+   })->middleware('is_admin'); // End of the /admin Route Group
 
 });// End of the main Authenticated Route Group
 
