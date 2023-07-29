@@ -5,7 +5,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaskController;
-
+use App\Http\Controllers\Admin\{
+DashboardController as AdminDashboardController ,
+StatsController as AdminStatsController ,
+};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,8 +73,8 @@ Route::middleware(['auth'])->group(function () {
 
     // End of the /app Route Group
     Route::group(['middleware' => 'is_admin' , 'prefix' => 'admin'] , function () {
-        Route::get('/dashboard' , App\Http\Controllers\Admin\DashboardController::class);
-        Route::get('/stats' , App\Http\Controllers\Admin\StatsController::class);
+        Route::get('/dashboard' , AdminDashboardController::class);
+        Route::get('/stats' , AdminStatsController::class);
 
     }); 
     // Task 9: /admin group within a group
