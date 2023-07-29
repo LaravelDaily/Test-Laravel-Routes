@@ -1,7 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\{
+    HomeController,
+    UserController,
+    TaskController,
+    DashboardController,
+    Admin\DashboardController as AdminDashboardController,
+    Admin\StatsController as AdminStatsController,
 /*
 |--------------------------------------------------------------------------
 | Web Routes
