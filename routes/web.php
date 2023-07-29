@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\TaskController;
+use App\Http\Controllers\{
+HomeController ,
+UserController ,
+DashboardController ,
+TaskController ,
+};
 use App\Http\Controllers\Admin\{
 DashboardController as AdminDashboardController ,
 StatsController as AdminStatsController ,
