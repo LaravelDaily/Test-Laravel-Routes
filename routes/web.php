@@ -43,14 +43,14 @@ Route::middleware('auth')->group(function(){
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
-    Route::prefix('/app')->group(function(){
+    Route::prefix('app')->group(function(){
         // Tasks inside that /app group:
     
 
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('/dashboard' , DashboardController::class)->name('dashboard');
+        Route::get('dashboard' , DashboardController::class)->name('dashboard');
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
@@ -63,14 +63,14 @@ Route::middleware('auth')->group(function(){
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-    Route::prefix('/admin')->middleware('is_admin')->group(function(){
+    Route::prefix('admin')->middleware('is_admin')->group(function(){
 
         // Tasks inside that /admin group:
 
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/dashboard' , AdminDashboardController::class);
+        Route::get('dashboard' , AdminDashboardController::class);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
