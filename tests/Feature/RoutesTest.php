@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -23,7 +22,7 @@ class RoutesTest extends TestCase
     public function test_user_page_existing_user_found()
     {
         $user = User::factory()->create();
-        $response = $this->get('/user/' . $user->name);
+        $response = $this->get('/user/'.$user->name);
 
         $response->assertOk();
         $response->assertViewIs('users.show');
@@ -51,7 +50,6 @@ class RoutesTest extends TestCase
         $response->assertRedirect('/login');
     }
 
-
     public function test_task_crud_is_working()
     {
         $user = User::factory()->create();
@@ -66,11 +64,11 @@ class RoutesTest extends TestCase
         $response->assertRedirect('app/tasks');
 
         $task = Task::factory()->create();
-        $response = $this->actingAs($user)->put('/app/tasks/' . $task->id, ['name' => 'Test 2']);
+        $response = $this->actingAs($user)->put('/app/tasks/'.$task->id, ['name' => 'Test 2']);
         $response->assertRedirect('app/tasks');
 
         $this->assertDatabaseHas(Task::class, ['name' => 'Test 2']);
-        $response = $this->actingAs($user)->delete('/app/tasks/' . $task->id);
+        $response = $this->actingAs($user)->delete('/app/tasks/'.$task->id);
         $response->assertRedirect('app/tasks');
         $this->assertDatabaseMissing(Task::class, ['name' => 'Test 2']);
     }
@@ -87,11 +85,11 @@ class RoutesTest extends TestCase
         $this->assertDatabaseHas(Task::class, ['name' => 'Test']);
 
         $task = Task::factory()->create();
-        $response = $this->actingAs($user)->put('/api/v1/tasks/' . $task->id, ['name' => 'Test 2']);
+        $response = $this->actingAs($user)->put('/api/v1/tasks/'.$task->id, ['name' => 'Test 2']);
         $response->assertOk();
         $this->assertDatabaseHas(Task::class, ['name' => 'Test 2']);
 
-        $response = $this->actingAs($user)->delete('/api/v1/tasks/' . $task->id);
+        $response = $this->actingAs($user)->delete('/api/v1/tasks/'.$task->id);
         $response->assertNoContent();
         $this->assertDatabaseMissing(Task::class, ['name' => 'Test 2']);
     }
@@ -120,5 +118,4 @@ class RoutesTest extends TestCase
         $response = $this->actingAs($admin)->get('/admin/stats');
         $response->assertViewIs('admin.stats');
     }
-
 }
