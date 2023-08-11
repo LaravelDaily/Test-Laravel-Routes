@@ -26,5 +26,3 @@
         <env name="TELESCOPE_ENABLED" value="false"/>
     </php>
 </phpunit>
-DB_CONNECTION=sqlite
-DB_DATABASE=/absolute/path/to/database.sqlite
