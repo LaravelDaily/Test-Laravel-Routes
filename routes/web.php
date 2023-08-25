@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
-    Route::group(['prefix' => '/app'] , function () { 
+    Route::group(['prefix' => '/app'], function () { 
 
         // Tasks inside that /app group:
 
@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-        Route::get('/app/dashboard' , \App\Http\Controllers\DashboardController::class)->name('dashboard');
+        Route::get('/dashboard' , \App\Http\Controllers\DashboardController::class)->name('dashboard');
 
 
         // Task 8: Manage tasks with URL /app/tasks/***.
