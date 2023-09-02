@@ -45,8 +45,8 @@ Route::middleware(['auth'])->group(function () {
     });
 
    Route::prefix('admin')->middleware(['is_admin'])->group(function () {
-            Route::get('dashboard',App\Http\Controllers\Admin\DashboardController::class);
-            Route::get('stats', App\Http\Controllers\Admin\StatsController::class);
+            Route::get('dashboard', \App\Http\Controllers\Admin\DashboardController::class);
+            Route::get('stats', \App\Http\Controllers\Admin\StatsController::class);
     });
 });
     // Tasks inside that Authenticated group:
