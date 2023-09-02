@@ -26,7 +26,7 @@ Route::get('user/{name}', [UserController::class, 'show']);
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-Route::view('about', 'pages/about.blade.php')->name('about');
+Route::view('about', 'pages/about')->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
@@ -43,11 +43,9 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('tasks', TaskController::class);
     });
 
-    Route::middleware(['is_admin'])->group(function () {
-        Route::prefix('admin')->group(function () {
-            Route::get('dashboard', Admin/DashboardController::class);
-            Route::resource('stats', Admin/StatsController::class);
-        });
+   Route::prefix('admin')->middleware(['is_admin'])->group(function () {
+            Route::get('dashboard', Admin\DashboardController::class);
+            Route::get('stats', Admin\StatsController::class);
     });
 });
     // Tasks inside that Authenticated group:
