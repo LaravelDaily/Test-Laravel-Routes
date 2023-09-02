@@ -1,5 +1,8 @@
 <?php
-
+use App\Http\Controllers\{
+    HomeController, UserController, DashboardController, TaskController };
+use App\Http\Controllers\Admin]{
+    DashboardController, StatsController };
 use Illuminate\Support\Facades\Route;
 
 /*
