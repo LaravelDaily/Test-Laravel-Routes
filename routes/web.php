@@ -64,11 +64,12 @@ Route::middleware('auth')->group(function (){
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
 
-        Route::resource('/tasks', TaskController::class);
+        //! no trailing slash for 7 routes not 5
+        Route::resource('tasks', TaskController::class);
         // End of the /app Route Group
     });
 
-    Route::middleware('is_admin')->prefix('/admin')->group(function(){
+    Route::group(['prefix'=>'admin', 'middleware'=>'is_admin'],function(){
 
         // Task 9: /admin group within a group
         // Add a group for routes with URL prefix "admin"
