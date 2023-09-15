@@ -97,7 +97,6 @@ Route::prefix('app')->group(function () {
     // End of the /admin Route Group
         });
     });
-
 // End of the main Authenticated Route Group
 });
 
