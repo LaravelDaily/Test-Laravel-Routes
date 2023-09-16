@@ -32,7 +32,7 @@ Route::get('/user/{name}',[UserController::class,'show']);
 // Put one code line here below
 //Route::view('/about','pages/about')->name('about');
 Route::get('/about',function(){
-    return view('pages.about');
+    return view('/pages/about');
 })->name('about');
 
 
