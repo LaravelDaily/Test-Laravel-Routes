@@ -59,7 +59,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-Route::resource('task', [TaskController::class]);
+Route::resource('task', TaskController::class);
     // End of the /app Route Group
 });
 
@@ -68,7 +68,6 @@ Route::resource('task', [TaskController::class]);
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
 Route::prefix('admin')->middleware(['is_admin'])->group(function () {
-
 
         // Tasks inside that /admin group:
 
