@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
+Route::get('/dashboard', DashboardController::class)->name('dashboard');
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
@@ -69,13 +70,13 @@ Route::middleware(['auth'])->group(function () {
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-    Route::middleware(['is_admin'])->prefix('admin')->group(function () {
+    Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function () {
         // Tasks inside that /admin group:
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
 
-        Route::get('/dashboard', App\Http\Controllers\Admin\DashboardController::class);
+        Route::get('/dashboard', App\Http\Controllers\AdminDashboardController::class);
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
         Route::get('/stats', App\Http\Controllers\Admin\StatsController::class);
@@ -85,8 +86,5 @@ Route::middleware(['auth'])->group(function () {
     // End of the main Authenticated Route Group
 });
 // One more task is in routes/api.php
-Route::get('/dashboard', function(){
-    /
-})->name('dashboard');
 
 require __DIR__ . '/auth.php';
