@@ -85,5 +85,8 @@ Route::middleware(['auth'])->group(function () {
     // End of the main Authenticated Route Group
 });
 // One more task is in routes/api.php
+Route::get('/dashboard', function(){
+    /
+})->name('dashboard');
 
 require __DIR__ . '/auth.php';
