@@ -37,68 +37,55 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 
 Route::get('/about', function () {
     return view('pages.about');
-});
+})->name('about');
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
 
-Route::get('/log-in', function () {
-    return redirect('auth.login');
-});
+Route::redirect('/log-in', '/login');
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware(['auth'])->group(function () {
+
     // Tasks inside that Authenticated group:
 
-    Route::get('/auth/create', [AuthenticatedSessionController::class, 'create']);
-    Route::get('/auth/store', [AuthenticatedSessionController::class, 'store']);
-    Route::get('/auth/destroy', [AuthenticatedSessionController::class, 'destroy']);
+    // Task 6: /app group within a group
+    // Add another group for routes with prefix "app"
+    // Put one Route Group code line here below
+
+    Route::prefix('app')->group(function () {
+
+
+        // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
+        // Assign the route name "dashboard"
+        // Put one Route Group code line here below
+        Route::get('/dashboard', [DashboardController::class]);
+        // Task 8: Manage tasks with URL /app/tasks/***.
+        // Add ONE line to assign 7 resource routes to TaskController
+        // Put one code line here below
+        Route::resource('tasks', TaskController::class);
+    });
+    // End of the /app Route Group
+
+    // Task 9: /admin group within a group
+    // Add a group for routes with URL prefix "admin"
+    // Assign middleware called "is_admin" to them
+    // Put one Route Group code line here below
+    Route::middleware(['is_admin'])->prefix('admin')->group(function () {
+        // Tasks inside that /admin group:
+
+        // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
+        // Put one code line here below
+
+        Route::get('dashboard', App\Http\Controllers\Admin\DashboardController::class);
+        // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
+        // Put one code line here below
+        Route::get('stats', App\Http\Controllers\Admin\StatsController::class);
+        // End of the /admin Route Group
+    });
+
+    // End of the main Authenticated Route Group
 });
-
-// Task 6: /app group within a group
-// Add another group for routes with prefix "app"
-// Put one Route Group code line here below
-
-Route::group(['prefix' => '/app'], function () {
-    // Tasks inside that /app group:
-    Route::resource('tasks', TaskController::class);
-});
-
-
-// Task 7: point URL /app/dashboard to a "Single Action" DashboardController
-// Assign the route name "dashboard"
-// Put one Route Group code line here below
-Route::group(function () {
-    Route::get('/app/dashboard', DashboardController::class);
-})->name('dashboard');
-
-// Task 8: Manage tasks with URL /app/tasks/***.
-// Add ONE line to assign 7 resource routes to TaskController
-// Put one code line here below
-Route::resource('/app/tasks', TaskController::class);
-// End of the /app Route Group
-
-
-// Task 9: /admin group within a group
-// Add a group for routes with URL prefix "admin"
-// Assign middleware called "is_admin" to them
-// Put one Route Group code line here below
-Route::group(['prefix' => '/admin', 'middleware' => 'is_admin'], function () {
-    // Tasks inside that /admin group:
-
-});
-
-// Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
-// Put one code line here below
-
-Route::get('/admin/dashboard', Admin\DashboardController::class);
-// Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
-// Put one code line here below
-Route::get('/admin/stats', Admin\DashboardController::class);
-// End of the /admin Route Group
-
-// End of the main Authenticated Route Group
-
 // One more task is in routes/api.php
 
 require __DIR__ . '/auth.php';
