@@ -59,15 +59,9 @@ Route::group(['middleware' => 'auth'], function () {
 // Add another group for routes with prefix "app"
 // Put one Route Group code line here below
 
-Route::prefix('/app')->group(function () {
+Route::group(['prefix' => '/app'], function () {
     // Tasks inside that /app group:
-    Route::get('/', [TaskController::class, 'index']);
-    Route::post('/create', [TaskController::class, 'create']);
-    Route::get('/store', [TaskController::class, 'store']);
-    Route::get('/show', [TaskController::class, 'show']);
-    Route::get('/edit', [TaskController::class, 'edit']);
-    Route::put('/update', [TaskController::class, 'update']);
-    Route::get('/delete', [TaskController::class, 'create']);
+    Route::resource('tasks', TaskController::class);
 });
 
 
@@ -75,8 +69,8 @@ Route::prefix('/app')->group(function () {
 // Assign the route name "dashboard"
 // Put one Route Group code line here below
 Route::group(function () {
-    Route::get('/app/dashboard', DashboardController::class)->name('dashboard');
-});
+    Route::get('/app/dashboard', DashboardController::class);
+})->name('dashboard');
 
 // Task 8: Manage tasks with URL /app/tasks/***.
 // Add ONE line to assign 7 resource routes to TaskController
