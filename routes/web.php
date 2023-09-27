@@ -35,8 +35,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('admin')->middleware('is_admin')->group(function () {
-    Route::get('/dashboard', [AdminDashboardController::class]);
-    Route::get('/stats', [DashboardController::class]);
+    Route::get('/dashboard', AdminDashboardController::class);
+    Route::get('/stats', DashboardController::class);
 });
 
 require __DIR__ . '/auth.php';
