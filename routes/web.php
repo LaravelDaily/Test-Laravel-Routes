@@ -18,17 +18,16 @@ Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
-Route::get('/user/{$name}',[\App\Http\Controllers\UserController::class,'show']);
-
+Route::get('/user/{name}',[\App\Http\Controllers\UserController::class,'show']);
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
-Route::redirect('about','resources/views/pages/about.blade.php')
+Route::view('/about','pages.about')
     ->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
-Route::redirect('log-in','login');
+Route::redirect('/log-in','/login');
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
@@ -45,7 +44,7 @@ Route::middleware('auth')->group(function (){
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
-        Route::resource('tasks/',\App\Http\Controllers\TaskController::class);
+        Route::resource('tasks',\App\Http\Controllers\TaskController::class);
     });
 
     // Task 9: /admin group within a group
@@ -60,7 +59,6 @@ Route::middleware('auth')->group(function (){
         Route::get('stats',\App\Http\Controllers\Admin\StatsController::class);
 
     });
-
 });
 
 require __DIR__.'/auth.php';
