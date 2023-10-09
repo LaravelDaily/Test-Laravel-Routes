@@ -23,5 +23,10 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     // Keep in mind that prefix should be /api/v1.
     // Add ONE line to assign 5 resource routes to TaskController
     // Put one code line here below
-
+    Route::prefix("/v1")->name("v1.")->group(function(){
+        Route::apiResource("tasks", ApiTaskController::class);
+    });
+    // Route::apiResource("/v1/tasks", ApiTaskController::class,[
+    //     'as' => 'api.v1'
+    // ]);
 });
