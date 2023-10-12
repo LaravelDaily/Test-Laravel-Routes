@@ -75,9 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Put one Route Group code line here below
 
 
-    // Route::group(['prefix' => '/admin','middleware' => 'is_admin'], function () {
-    Route::prefix('/admin')->middleware('is_admin')->group( function () {
-        // Both ways are true and working fine, but the first line is more orgnized
+    Route::group(['prefix' => '/admin','middleware' => 'is_admin'], function () {
 
 
 
