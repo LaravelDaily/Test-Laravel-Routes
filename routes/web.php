@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
@@ -79,7 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('dashboard', DashboardController::class)->name('dashboard');
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::singleton('stats', \App\Http\Controllers\Admin\StatsController::class);
+        Route::get('stats', StatsController::class);
         // End of the /admin Route Group
     })->middleware('is_admin');
     // End of the main Authenticated Route Group
