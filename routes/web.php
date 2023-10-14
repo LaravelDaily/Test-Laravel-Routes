@@ -74,18 +74,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group([
         'middleware' => 'is_admin',
         'prefix' => 'admin',
-        function () {
-            // Tasks inside that /admin group:
+    ], function () {
+        // Tasks inside that /admin group:
 
-            // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
-            // Put one code line here below
-            Route::get('dashboard', DashboardController::class)->name('dashboard');
-            // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
-            // Put one code line here below
-            Route::get('stats', StatsController::class);
-            // End of the /admin Route Group
-        },
-    ]);
+        // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
+        // Put one code line here below
+        Route::get('dashboard', DashboardController::class)->name('dashboard');
+        // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
+        // Put one code line here below
+        Route::get('stats', StatsController::class);
+        // End of the /admin Route Group
+    });
     // End of the main Authenticated Route Group
 });
 // One more task is in routes/api.php
