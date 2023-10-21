@@ -63,15 +63,15 @@ class RoutesTest extends TestCase
         $response->assertOk();
 
         $response = $this->actingAs($user)->post('/app/tasks', ['name' => 'Test']);
-        $response->assertStatus(201);
+        $response->assertRedirect('app/tasks');
 
         $task = Task::factory()->create();
         $response = $this->actingAs($user)->put('/app/tasks/' . $task->id, ['name' => 'Test 2']);
-        $response->assertOk();
+        $response->assertRedirect('app/tasks');
 
         $this->assertDatabaseHas(Task::class, ['name' => 'Test 2']);
         $response = $this->actingAs($user)->delete('/app/tasks/' . $task->id);
-        $response->assertStatus(204);
+        $response->assertRedirect('app/tasks');
         $this->assertDatabaseMissing(Task::class, ['name' => 'Test 2']);
     }
 
