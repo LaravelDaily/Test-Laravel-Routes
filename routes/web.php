@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/dashboard', function () {
+    return view('user.dashboard');
+});
+
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
 Route::get('/', [HomeController::class, 'index']);
