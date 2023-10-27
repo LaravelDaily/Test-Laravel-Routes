@@ -34,15 +34,11 @@ Route::get('/user/{name}', [UserController::class, 'show'])->name('user');
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-Route::get('/about', function () {
-    return view('pages/about');
-})->name('about');
+Route::get('/about', view('pages/about'))->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::get('/log-in', function () {
-    return redirect('/login');
-});
+Route::redirect('/log-in', '/login');
 
 
 // Task 5: group the following route sentences below in Route::group()
@@ -77,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
 // Add a group for routes with URL prefix "admin"
 // Assign middleware called "is_admin" to them
 // Put one Route Group code line here below
-Route::prefix('admin')->middleware(['is_admin'])->group(function () {
+Route::prefix('admin')->middleware(["is_admin"])->group(function () {
     // Tasks inside that /admin group:
     // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
     // Put one code line here below
