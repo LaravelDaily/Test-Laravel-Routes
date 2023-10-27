@@ -81,10 +81,10 @@ Route::prefix('admin')->middleware(['is_admin'])->group(function () {
     // Tasks inside that /admin group:
     // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
     // Put one code line here below
-    Route::get('/admin/dashboard', AdminDashboardController::class);
+    Route::get('/dashboard', AdminDashboardController::class);
     // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
     // Put one code line here below
-    Route::get('/admin/stats', AdminStatsController::class);
+    Route::get('/stats', AdminStatsController::class);
 });
 
 
