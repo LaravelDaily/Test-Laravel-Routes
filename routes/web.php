@@ -79,7 +79,6 @@ Route::middleware('auth')->group(function () {
 // Put one Route Group code line here below
 Route::prefix('admin')->middleware(['is_admin'])->group(function () {
     // Tasks inside that /admin group:
-
     // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
     // Put one code line here below
     Route::get('/admin/dashboard', AdminDashboardController::class);
