@@ -10,12 +10,14 @@ class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param  \App\Models\Task
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return Task::all();
+
+        $tasks = Task::all();
+        return view('tasks.index', compact('tasks'));
     }
 
     public function store(Request $request)

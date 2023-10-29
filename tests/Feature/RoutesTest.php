@@ -49,6 +49,7 @@ class RoutesTest extends TestCase
 
         $response = $this->get('/app/tasks');
         $response->assertRedirect('/login');
+
     }
 
 
@@ -79,18 +80,22 @@ class RoutesTest extends TestCase
     {
         $user = User::factory()->create();
 
+        // Get a task
         $response = $this->actingAs($user)->get('/api/v1/tasks');
-        $response->assertOk();
+        $response->assertStatus(200);
 
-        $response = $this->actingAs($user)->post('/api/v1/tasks', ['name' => 'Test']);
+        // Create a new task
+        $response = $this->actingAs($user)->postJson('/api/v1/tasks', ['name' => 'Test']);
         $response->assertCreated();
         $this->assertDatabaseHas(Task::class, ['name' => 'Test']);
 
+        // Update the task
         $task = Task::factory()->create();
         $response = $this->actingAs($user)->put('/api/v1/tasks/' . $task->id, ['name' => 'Test 2']);
         $response->assertOk();
         $this->assertDatabaseHas(Task::class, ['name' => 'Test 2']);
 
+        // Delete the task
         $response = $this->actingAs($user)->delete('/api/v1/tasks/' . $task->id);
         $response->assertNoContent();
         $this->assertDatabaseMissing(Task::class, ['name' => 'Test 2']);
