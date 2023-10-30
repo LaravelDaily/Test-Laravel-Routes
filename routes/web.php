@@ -32,7 +32,7 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-Route::view('/about', 'about.blade.php')->name('about');
+Route::view('/about', 'pages/about')->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
@@ -69,7 +69,7 @@ Route::middleware(['auth'])->group(function () {
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-    Route::prefix('admin')->middleware(['is_admin'])->group(function () {
+    Route::prefix('admin')->middleware('is_admin')->group(function () {
 
         // Tasks inside that /admin group:
 
