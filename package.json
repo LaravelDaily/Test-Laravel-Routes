@@ -1,13 +1,13 @@
 {
     "private": true,
     "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production"
+        "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && npm run development",
+        "development": "SET NODE_OPTIONS=--openssl-legacy-provider && mix",
+        "watch": "SET NODE_OPTIONS=--openssl-legacy-provider && mix watch",
+        "watch-poll": "SET NODE_OPTIONS=--openssl-legacy-provider && mix watch -- --watch-options-poll=1000",
+        "hot": "SET NODE_OPTIONS=--openssl-legacy-provider &&mix watch --hot",
+        "prod": "SET NODE_OPTIONS=--openssl-legacy-provider && npm run production",
+        "production": "SET NODE_OPTIONS=--openssl-legacy-provider && mix --production"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.2.1",
