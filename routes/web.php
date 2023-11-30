@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Admin\StatsController;
+use App\Http\Controllers\StatsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
@@ -45,7 +44,7 @@ Route::redirect('/log-in', '/login');
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware('auth')->group(function () {
 
     // Tasks inside that Authenticated group:
 
@@ -74,7 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-    Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => 'is_admin', 'namespace' => 'Admin'], function () {
 
         // Tasks inside that /admin group:
 
