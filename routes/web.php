@@ -62,10 +62,7 @@ use Illuminate\Support\Facades\Route;
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
 
-
         // Tasks inside that /admin group:
-
-
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
 
@@ -75,6 +72,44 @@ use Illuminate\Support\Facades\Route;
 
 
     // End of the /admin Route Group
+// Task 1
+Route::get('/', 'HomeController@index');
+
+// Task 2
+Route::get('/user/{name}', 'UserController@show');
+
+// Task 3
+Route::view('/about', 'pages.about')->name('about');
+
+// Task 4
+Route::redirect('/log-in', '/login');
+
+// Task 5
+Route::middleware('auth')->group(function () {
+
+    // Task 6
+    Route::prefix('app')->group(function () {
+
+        // Task 7
+        Route::get('/dashboard', 'DashboardController')->name('dashboard');
+
+        // Task 8
+        Route::resource('/tasks', 'TaskController');
+
+    });
+
+    // Task 9
+    Route::prefix('admin')->middleware('is_admin')->group(function () {
+
+        // Task 10
+        Route::get('/dashboard', 'Admin\DashboardController');
+
+        // Task 11
+        Route::get('/stats', 'Admin\StatsController');
+
+    });
+
+});
 
 // End of the main Authenticated Route Group
 
