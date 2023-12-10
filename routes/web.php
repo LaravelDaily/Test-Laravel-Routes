@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\StatsController as AdminStatsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -79,5 +86,45 @@ use Illuminate\Support\Facades\Route;
 // End of the main Authenticated Route Group
 
 // One more task is in routes/api.php
+// Task 1
+Route::get('/', 'HomeController@index');
+
+// Task 2
+Route::get('/user/{name}', 'UserController@show');
+
+// Task 3
+Route::view('/about', 'pages.about')->name('about');
+//task 4 
+Route::redirect('/log-in', '/login', 301);
+
+// Task 5: Authenticated Route Group
+Route::group(['middleware' => 'auth'], function () {
+
+    // Task 6: /app group within a group
+    Route::group(['prefix' => 'app'], function () {
+
+    
+        Route::get('/app/dashboard', [DashboardController::class, '__invoke'])->name('dashboard');
+
+        
+        Route::resource('/app/tasks', 'TaskController')->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
+
+
+    }); // End of the /app Route Group
+
+    // Task 9: /admin group within a group
+    Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function () {
+
+        // Tasks inside that /admin group:
+
+        // Task 10: /admin/dashboard route
+        Route::get('/dashboard', [AdminDashboardController::class, '__invoke']);
+
+        // Task 11: /admin/stats route
+        Route::get('/stats', [AdminStatsController::class, '__invoke']);
+
+    }); // End of the /admin Route Group
+
+}); // End of the main Authenticated Route Group
 
 require __DIR__.'/auth.php';
