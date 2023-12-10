@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('app')->group(function () {
 
         // Task 7
-        Route::get('/dashboard', 'DashboardController')->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
 
         // Task 8
         Route::resource('/tasks', 'TaskController');
