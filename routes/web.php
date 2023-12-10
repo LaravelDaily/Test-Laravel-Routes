@@ -106,10 +106,12 @@ Route::group(['middleware' => 'auth'], function () {
         // Tasks inside that /app group:
 
         // Task 7: /app/dashboard route
-        Route::get('/dashboard', 'DashboardController')->name('dashboard');
+        // Task 7: /app/dashboard route
+        Route::get('/app/dashboard', 'DashboardController')->name('dashboard');
 
-        // Task 8: /app/tasks route
-        Route::resource('/tasks', 'TaskController')->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
+// Task 8: /app/tasks route
+        Route::resource('/app/tasks', 'TaskController')->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
+
 
     }); // End of the /app Route Group
 
