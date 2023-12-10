@@ -15,23 +15,51 @@ use Illuminate\Support\Facades\Route;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
-
+Route::get('/', 'HomeController@index');
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
 
+Route::get('/user/{name}', 'UserController@show');
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
+Route::view('/about', 'pages.about')->name('about');
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
+Route::redirect('/log-in', '/login');
 
+// Task 5
+Route::middleware('auth')->group(function () {
 
+    // Task 6
+    Route::prefix('app')->group(function () {
+
+        // Task 7
+        Route::get('/dashboard', 'DashboardController')->name('dashboard');
+
+        // Task 8
+        Route::resource('/tasks', 'TaskController');
+
+    });
+
+    // Task 9
+    Route::prefix('admin')->middleware('is_admin')->group(function () {
+
+        // Task 10
+        Route::get('/dashboard', 'Admin\DashboardController');
+
+        // Task 11
+        Route::get('/stats', 'Admin\StatsController');
+
+    });
+
+});
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
@@ -72,44 +100,14 @@ use Illuminate\Support\Facades\Route;
 
 
     // End of the /admin Route Group
-// Task 1
-Route::get('/', 'HomeController@index');
 
-// Task 2
-Route::get('/user/{name}', 'UserController@show');
+
 
 // Task 3
-Route::view('/about', 'pages.about')->name('about');
 
 // Task 4
-Route::redirect('/log-in', '/login');
 
-// Task 5
-Route::middleware('auth')->group(function () {
 
-    // Task 6
-    Route::prefix('app')->group(function () {
-
-        // Task 7
-        Route::get('/dashboard', 'DashboardController')->name('dashboard');
-
-        // Task 8
-        Route::resource('/tasks', 'TaskController');
-
-    });
-
-    // Task 9
-    Route::prefix('admin')->middleware('is_admin')->group(function () {
-
-        // Task 10
-        Route::get('/dashboard', 'Admin\DashboardController');
-
-        // Task 11
-        Route::get('/stats', 'Admin\StatsController');
-
-    });
-
-});
 
 // End of the main Authenticated Route Group
 
