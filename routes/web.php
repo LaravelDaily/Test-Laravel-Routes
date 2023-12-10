@@ -104,9 +104,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'app'], function () {
 
     
-        Route::get('/app/dashboard', function () {
-            return app('DashboardController')->__invoke();
-        })->name('dashboard');
+        Route::get('/app/dashboard', [DashboardController::class, '__invoke'])->name('dashboard');
+
         
         Route::resource('/app/tasks', 'TaskController')->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
 
