@@ -1,6 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\StatsController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\TaskController;
+
+
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,23 +25,52 @@ use Illuminate\Support\Facades\Route;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
-
+Route::get('/', 'HomeController@index');
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
 
+Route::get('/user/{name}', 'UserController@show');
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
+Route::view('/about', 'pages.about')->name('about');
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
+Route::redirect('/log-in', '/login');
 
+// Task 5
+Route::middleware('auth')->group(function () {
 
+    // Task 6
+    Route::prefix('app')->group(function () {
+
+        // Task 7
+        Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
+
+        // Task 8
+        Route::resource('/tasks', 'TaskController');
+
+    });
+
+    // Task 9
+    Route::prefix('admin')->middleware('is_admin')->group(function () {
+
+        // Task 10
+        Route::get('/dashboard', [DashboardController::class, '__invoke']);
+
+        // Task 11
+// Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
+        Route::get('/admin/stats', [StatsController::class, '__invoke']);
+
+    });
+
+});
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
@@ -62,10 +101,7 @@ use Illuminate\Support\Facades\Route;
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
 
-
         // Tasks inside that /admin group:
-
-
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
 
@@ -75,6 +111,14 @@ use Illuminate\Support\Facades\Route;
 
 
     // End of the /admin Route Group
+
+
+
+// Task 3
+
+// Task 4
+
+
 
 // End of the main Authenticated Route Group
 
