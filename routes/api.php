@@ -19,6 +19,8 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
 
-    Route::resource('/tasks', 'TaskController')->parameters(['tasks' => '*****'])->prefix('api/v1');
-
+    Route::group(['prefix' => 'api/v1'], function () {
+        Route::resource('tasks', 'TaskController')->parameters(['tasks' => '*****']);
+    });
+    
 });
