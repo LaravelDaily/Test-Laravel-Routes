@@ -103,13 +103,11 @@ Route::group(['middleware' => 'auth'], function () {
     // Task 6: /app group within a group
     Route::group(['prefix' => 'app'], function () {
 
-        // Tasks inside that /app group:
-
-        // Task 7: /app/dashboard route
-        // Task 7: /app/dashboard route
-        Route::get('/app/dashboard', 'DashboardController')->name('dashboard');
-
-// Task 8: /app/tasks route
+    
+        Route::get('/app/dashboard', function () {
+            return app('DashboardController')->__invoke();
+        })->name('dashboard');
+        
         Route::resource('/app/tasks', 'TaskController')->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
 
 
