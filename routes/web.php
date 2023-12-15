@@ -44,7 +44,7 @@ Route::group(['middleware' => 'auth'], ( function() {
     // Tasks inside that Authenticated group:
 
     // Task 6: /app group within a group
-    // Add another group forp routes with refix "app"
+    // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
     Route::prefix('app')->group( function() {
         // Tasks inside that /app group:
