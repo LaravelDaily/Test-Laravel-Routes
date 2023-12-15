@@ -5,7 +5,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaskController;
-use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\StatsController;
 
 /*
@@ -32,7 +31,7 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-Route::view('/about', 'about')->name('about');
+Route::view('/about', 'pages.about')->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
@@ -68,7 +67,7 @@ Route::group(['middleware' => 'auth'], ( function() {
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
     Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function () {
-        Route::get('/dashboard', DashboardController::class);
+        Route::get('/dashboard', \App\Http\Controllers\Admin\DashboardController::class);
         Route::get('/stats', StatsController::class);
     });
 // End of the main Authenticated Route Group
