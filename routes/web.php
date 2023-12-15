@@ -68,7 +68,7 @@ Route::group(['middleware' => 'auth'], ( function() {
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
     Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function () {
-        Route::get('/dashboard', AdminDashboardController::class);
+        Route::get('/dashboard', DashboardController::class);
         Route::get('/stats', StatsController::class);
     });
 // End of the main Authenticated Route Group
