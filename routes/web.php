@@ -3,6 +3,8 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\StatsController as AdminStatsController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Admin\StatsController;
 use Illuminate\Support\Facades\Route;
@@ -73,11 +75,11 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/dashboard', DashboardController::class)->name('admin.dashboard');
+        Route::get('/dashboard', AdminDashboardController::class)->name('admin.dashboard');
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('/stats', StatsController::class);
+        Route::get('/stats', AdminStatsController::class);
 
     // End of the /admin Route Group
     });
