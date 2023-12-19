@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\StatsController
+use App\Http\Controllers\Admin\StatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,13 +37,13 @@ Route::get('/', [HomeController::class, 'index']);
 // Also, assign the route name "about"
 // Put one code line here below
 
-Route::view('/about', 'pages.about')->name('about')
+Route::view('/about', 'pages.about')->name('about');
 
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::redirect('/log-in', '/login')
+Route::redirect('/log-in', '/login');
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
