@@ -27,7 +27,8 @@ Route::get('/', [HomeController::class, 'index']);
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
-    route::get ('/user', [UserController::class, 'show']);
+    route::get ('/user/{name}', [UserController::class, 'show']);
+
 
 
 
@@ -37,7 +38,7 @@ Route::get('/', [HomeController::class, 'index']);
 // Put one code line here below
 
 Route::view('/about', 'pages.about')->name('about')
-Route::get('/about', function(){ return view('pages.about'); })->name('about');
+
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
