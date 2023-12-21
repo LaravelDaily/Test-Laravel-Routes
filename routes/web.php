@@ -57,7 +57,7 @@ Route::redirect('/log-in', '/login');
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
 
-    Route::prefix('/app')->group(function () {
+    
         Route::prefix('app')->group(function(){
 
     
