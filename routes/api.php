@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\Api\V1\TaskController as V1taskController;
+use app\Http\Controllers\Api/V1\TaskController as V1taskController;
 
 
 /*
