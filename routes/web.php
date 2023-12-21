@@ -50,7 +50,7 @@ Route::redirect('/log-in', '/login');
 // Put one Route Group code line here below
     Route::middleware('auth')->group(function(){
 
-})
+});
     // Tasks inside that Authenticated group:
 
     // Task 6: /app group within a group
@@ -77,7 +77,7 @@ Route::redirect('/log-in', '/login');
         Route::resource('tasks', 'TaskController'::class);
 
     // End of the /app Route Group
-    })
+    });
 
 
     // Task 9: /admin group within a group
@@ -105,7 +105,7 @@ Route::prefix ('admin')->middleware::('is_admin')->group( function (){
         // Put one code line here below
 
         Route::get('/stats', Admin\StatsController::class);
-})
+});
 
 
     // End of the /admin Route Group
