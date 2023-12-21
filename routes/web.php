@@ -20,15 +20,15 @@ use App\Http\Controllers\Admin\StatsController;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
-Route::get('/', [HomeController::class, 'index']);
 
+
+Route::get('/',[HomeController::class,'index']);
 
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
-    Route::get ('/user/{name}', [UserController::class, 'show']);
-
+    route::get ('/user/{name}', [UserController::class, 'show']);
 
 
 
@@ -37,7 +37,7 @@ Route::get('/', [HomeController::class, 'index']);
 // Also, assign the route name "about"
 // Put one code line here below
 
-Route::view('/about', 'pages.about')->name('about');
+Route::view('/about','pages.about')->name('about');
 
 
 
@@ -48,7 +48,7 @@ Route::redirect('/log-in', '/login');
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::middleware('auth')->group(function(){
+Route::group('middleware' => 'auth'), (function() {
 
 })
     // Tasks inside that Authenticated group:
@@ -57,8 +57,8 @@ Route::middleware('auth')->group(function(){
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
 
-    
-     Route::prefix('app')->group(function(){
+    Route::prefix('/app')->group(function () {
+        Route::prefix('app')->group(function(){
 
     
 
@@ -111,9 +111,8 @@ Route::prefix ('admin')->middleware::('is_admin')->group( function (){
     // End of the /admin Route Group
 
 // End of the main Authenticated Route Group
-    })
 
+});
 // One more task is in routes/api.php
 
 require __DIR__.'/auth.php';
-
