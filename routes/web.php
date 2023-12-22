@@ -75,7 +75,7 @@ Route::redirect('/log-in', '/login');
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-        Route::resource('tasks', 'TaskController'::class);
+        Route::resource('tasks', TaskController::class);
 
     // End of the /app Route Group
     });
