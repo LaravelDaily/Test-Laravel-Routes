@@ -43,14 +43,15 @@ Route::redirect('/log-in', '/login');
 
 Route::middleware('auth')->group(function () {
     Route::prefix('app')->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
         Route::resource('/tasks', TaskController::class);
     });
 
-    Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function () {
-        Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class]);
-        Route::get('/stats', [\App\Http\Controllers\Admin\StatsController::class]);
-    });
+});
+
+Route::prefix('admin')->middleware('is_admin')->group(function () {
+    Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class]);
+    Route::get('stats', [\App\Http\Controllers\Admin\StatsController::class]);
 });
 // Tasks inside that Authenticated group:
 
