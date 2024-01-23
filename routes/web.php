@@ -80,4 +80,4 @@ Route::get('/',[HomeController::class,'index'])
 
 // One more task is in routes/api.php
 
-require __DIR__.'/auth.php';
+//require __DIR__.'/auth.php';
