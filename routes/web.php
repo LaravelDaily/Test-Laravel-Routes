@@ -21,27 +21,36 @@ Route::get('/', [HomeController::class, 'index']);
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
+Route::get('/user/{name?}', [UserController::class, 'show']);
 
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
+Route::view('/about', 'pages.about')->name('about');
+
 
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
+Route::redirect('/log-in', '/login');
+
 
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
+Route::middleware(['auth'])->group(function(){
+
+
 
     // Tasks inside that Authenticated group:
 
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
+    Route::group(['prefix'=>'app'], function(){
 
         // Tasks inside that /app group:
 
