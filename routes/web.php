@@ -3,6 +3,9 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\StatsController;
+use App\Http\Controllers\Admin\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +47,7 @@ Route::group(['middleware' => 'auth'], function() {
     // Task 6: point the GET URL "/user/[name]/profile" to the UserController method "profile"
 Route::group(['prefix' => 'app'], function() {
     // Task-7: Tasks inside that /app group:
-Route::get('/dashboard', 'DashboardController')->name('dashboard');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 // Task 8: Manage tasks with URL /app/tasks/***.
 Route::resource('tasks', 'TaskController');
 });
@@ -52,8 +55,8 @@ Route::resource('tasks', 'TaskController');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function() {
-    Route::get('/dashboard', 'Admin\DashboardController')->name('admin.dashboard');
-    Route::get('/stats', 'Admin\StatsController')->name('admin.stats');
+    Route::get('/dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
+    Route::get('/stats', 'Admin\StatsController@index')->name('admin.stats');
 });
 
 require __DIR__.'/auth.php';
