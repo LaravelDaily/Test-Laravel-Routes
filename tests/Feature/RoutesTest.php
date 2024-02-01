@@ -104,7 +104,7 @@ class RoutesTest extends TestCase
         $response = $this->get('/admin/stats');
         $response->assertRedirect('login');
 
-        $user = User::factory()->create();
+        $user = User::factory()->create(['is_admin' => 0]);
 
         $response = $this->actingAs($user)->get('/admin/dashboard');
         $response->assertStatus(403);
