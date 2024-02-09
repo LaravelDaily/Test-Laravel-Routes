@@ -34,13 +34,17 @@ Route::get('/user/{name}', [UserController::class, 'show']);
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-Route::get('/about', function() { return url('pages.about'); })->name('about');
+// Route::get('/about', function() { return url('pages.about'); })->name('about');
+
+// Correct way
+Route::view('/about', 'pages.about')->name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-Route::get('/log-in', function() { return url('login'); });
+// Route::get('/log-in', function() { return url('login'); });
 
-
+// Correct way
+Route::redirect('/log-in', '/login');
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
@@ -91,8 +95,8 @@ Route::get('/log-in', function() { return url('login'); });
 Route::group(['middleware' =>  'auth'], function() {
     // App group
     Route::group(['prefix' => '/app'], function() {
-        Route::resource('dashboard', DashboardController::class)->only('index');
-        Route::resource('tasks', TaskController::class);
+        Route::get('/dashboard', DashboardController::class)->name('dashboard');
+        Route::resource('/tasks', TaskController::class);
     });
 
     // Admin group
@@ -100,11 +104,24 @@ Route::group(['middleware' =>  'auth'], function() {
         'middleware' => 'is_admin',
         'prefix' => '/admin'],
         function() {
-            Route::resource('dashboard', AdminDashboardController::class);
-            Route::resource('stats', StatsController::class);
+            Route::get('/dashboard', AdminDashboardController::class);
+            Route::resource('/stats', StatsController::class);
 
     });
 });
+
+// Correct way
+
+// Route::middleware('auth')->group(function () {
+//     Route::prefix('/app')->group(function () {
+//         Route::get('/dashboard', DashboardController::class)->name('dashboard');
+//         Route::resource('/tasks', TaskController::class);
+//     });
+//     Route::prefix('/admin')->middleware('is_admin')->group(function () {
+//         Route::get('/dashboard', DashboardController::class);
+//         Route::get('/stats', StatsController::class);
+//     });
+// });
 
 // One more task is in routes/api.php
 
