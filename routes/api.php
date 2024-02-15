@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     // Put one code line here below
     Route::prefix('v1', function(){
 
-        Route::apiResource('task',TaskController::class);
+        Route::apiResource('tasks',TaskController::class);
     });
     
 });
