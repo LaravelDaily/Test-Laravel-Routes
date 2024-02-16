@@ -86,10 +86,12 @@ Route::middleware('auth')->group(function() {
         
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
+        
         Route::get('/dashboard',adminDashboard::class);
         
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
+
         Route::get('/stats',StatsController::class);
         
         
