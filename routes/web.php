@@ -6,6 +6,8 @@ use App\Http\Controllers\{
     HomeController,
     TaskController,
     UserController,
+    Admin\DashboardController,
+    Admin\StatsController,
 };
 /*
 |--------------------------------------------------------------------------
