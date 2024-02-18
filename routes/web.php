@@ -61,7 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-        Route::resource('/tasks', 'TaskController');
+        Route::resource('/tasks', TaskController::class);
 
     // End of the /app Route Group
     });
@@ -72,9 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Put one Route Group code line here below
     Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function () {
 
-        // Tasks inside that /admin group:
-        
-
+        // Tasks inside th
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
         // Route::get('/admin/dashboard', 'AdminDashboardController');
