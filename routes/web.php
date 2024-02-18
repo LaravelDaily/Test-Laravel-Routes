@@ -7,8 +7,8 @@ use App\Http\Controllers\{
     TaskController,
     UserController,
 };
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\StatsController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\StatsController as AdminStatsController;
     
 /*
 |--------------------------------------------------------------------------
@@ -77,11 +77,11 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/admin/dashboard', 'Admin\DashboardController');
+        Route::get('/admin/dashboard', 'AdminDashboardController');
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('/admin/stats', 'Admin\StatsController');
+        Route::get('/admin/stats', 'AdminStatsController');
 
     // End of the /admin Route Group
     });
