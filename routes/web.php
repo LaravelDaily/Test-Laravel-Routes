@@ -61,7 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/tasks', 'TaskController');
 
     // End of the /app Route Group
-    }
+    });
 
     // Task 9: /admin group within a group
     // Add a group for routes with URL prefix "admin"
@@ -81,10 +81,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/admin/stats', 'Admin\StatsController');
 
     // End of the /admin Route Group
-    }
+    });
                  
 // End of the main Authenticated Route Group
-}
+});
 // One more task is in routes/api.php
 
 require __DIR__.'/auth.php';
