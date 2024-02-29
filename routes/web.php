@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Task 1: point the main "/" URL to the HomeController method "index"
-Route::get('/','app\Http\Controllers\Api\V1\TaskController@index');
+Route::get('/','app\Http\Controllers\HomeController@index');
 
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
