@@ -6,13 +6,12 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function show($name)
+    public function show(User $name)
     {
-        $user = User::where('name', $name)->first();
-        if (!$user) {
+        if (!User::exists($user->name)) {
             return view('users.notfound');
         }
 
-        return view('users.show', compact('user'));
+        return view('users.show', ['user'=>$user]));
     }
 }
