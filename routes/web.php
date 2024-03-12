@@ -49,7 +49,7 @@ Route::get('/log-in', function () {
 Route::group(['middleware' => ['auth']], function () {
 Route::get("/", [HomeController::class, "index"]);
 Route::get("/user/{name}", [UserController::class, "show"]);
-Route::view("/about", pages.about)->name('about');
+Route::view("/about", "pages.about", ["name" => "about"]);
 });
 
     // Tasks inside that Authenticated group:
