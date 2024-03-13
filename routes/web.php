@@ -49,14 +49,12 @@ Route::get('/log-in', function () {
 // Put one Route Group code line here below
 Route::group(['middleware' => 'auth'], function () {
     // Routes that require authentication
-});
 
     // Tasks inside that Authenticated group:
 
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
-Route::group(['prefix' => 'app'], function () {
     Route::prefix('app')->group(function () {
         // Your routes inside the 'app' prefix group
     });     
