@@ -61,7 +61,6 @@ Route::group("/app", function () {
            //
         });
     });
-});
         // Tasks inside that /app group:
 
 
