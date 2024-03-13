@@ -46,20 +46,20 @@ Route::get('/log-in', function () {
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-// Route::group(['middleware' => 'auth'], function () {
-//     // Routes that require authentication
-// });
+Route::group(['middleware' => 'auth'], function () {
+    // Routes that require authentication
+});
 
     // Tasks inside that Authenticated group:
 
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
-// Route::group("/app", function () {
-//     Route::prefix('app')->group(function () {
-//    //
-//     });     
-// });
+Route::group(['prefix' => 'app'], function () {
+    Route::prefix('app')->group(function () {
+        // Your routes inside the 'app' prefix group
+    });     
+});
         // Tasks inside that /app group:
 
 
@@ -81,9 +81,11 @@ Route::resource('app/tasks', TaskController::class);
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-// Route::group(["prefix" => "admin", "middleware" => "is_admin" ], function () {
-//     // 
-// });
+Route::group(["middleware" => "is_admin"], function () {
+    Route::prefix("admin")->group(function () {
+        // Your admin routes here
+    });
+});
 
 
         // Tasks inside that /admin group:
