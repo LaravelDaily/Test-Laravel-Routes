@@ -81,11 +81,11 @@ Route::middleware('auth')->group(function (){
 
             // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
             // Put one code line here below
-            Route::get('/admin/dashboard',[App\Http\Controllers\Admin\DashboardController::class]);
+            Route::get('/dashboard',[App\Http\Controllers\Admin\DashboardController::class]);
 
             // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
             // Put one code line here below
-            Route::get('/admin/stats',[App\Http\Controllers\Admin\StatsController::class]);
+            Route::get('/stats',[App\Http\Controllers\Admin\StatsController::class]);
             // End of the /admin Route Group
 
         });
