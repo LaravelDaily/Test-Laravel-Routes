@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\TaskController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -59,7 +60,7 @@ Route::middleware('auth')->group(function() {
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-        
+        Route::resource('/app/tasks', TaskController::class);
         // End of the /app Route Group
     });
     
