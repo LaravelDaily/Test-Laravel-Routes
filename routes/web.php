@@ -43,16 +43,14 @@ Route::redirect('log-in', 'login');
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
 // Put one Route Group code line here below
-Route::middleware(['auth'])->group(['prefix' => 'app'], function () {
-    Route::get('dashboard', [UserController::class])->name('dashboard');
-    Route::resource('tasks', [TaskController::class]);
-});
+Route::middleware(['auth'])->group(function () {
+   
     // Tasks inside that Authenticated group:
 
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
-
+Route::prefix(['app')->group(function () {
         // Tasks inside that /app group:
 
 
@@ -60,12 +58,13 @@ Route::middleware(['auth'])->group(['prefix' => 'app'], function () {
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
 
-
+Route::get('dashboard', [UserController::class])->name('dashboard');
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-
+ Route::resource('tasks', [TaskController::class]);
     // End of the /app Route Group
+});
 
 
     // Task 9: /admin group within a group
@@ -91,6 +90,7 @@ Route::middleware(['is_admin'])->group(['prefix' => 'admin'], function () {
     // End of the /admin Route Group
 
 // End of the main Authenticated Route Group
+});
 });
 // One more task is in routes/api.php
 
