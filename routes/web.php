@@ -94,7 +94,6 @@ Route::get('stats', App\Http\Controllers\Admin\StatsController::class);
 });
 
        
-
 // End of the main Authenticated Route Group
 
 // One more task is in routes/api.php
