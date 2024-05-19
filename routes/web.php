@@ -2,6 +2,7 @@
     
     use App\Http\Controllers\HomeController;
     use Illuminate\Support\Facades\Route;
+    use App\Http\Controllers\DashboardController;
     
     /*
     |--------------------------------------------------------------------------
@@ -72,12 +73,12 @@
         
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/dashboard', 'Admin/DashboardController');
+        Route::get('/dashboard', DashboardController::class);
         
         
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('/stats', 'Admin/StatsController');
+        Route::get('/stats', 'StatsController');
         
         // End of the /admin Route Group
         
