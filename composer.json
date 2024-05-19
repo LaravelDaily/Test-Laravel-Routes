@@ -1,6 +1,36 @@
 {
     "name": "laravel/laravel",
     "type": "project",
+    "description": "The skeleton application for the Laravel framework.",
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "bezhansalleh/filament-shield": "^3.2",
+        "doctrine/dbal": "^3.8",
+        "filament/filament": "^3.2",
+        "laravel/framework": "^11.0",
+        "laravel/tinker": "^2.9",
+        "livewire/livewire": "^3.4",
+        "spatie/laravel-permission": "^6.4"
+
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.12",
+        "barryvdh/laravel-ide-helper": "^3.0",
+        "fakerphp/faker": "^1.23",
+        "laravel/pint": "^1.13",
+        "laravel/sail": "^1.26",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.0",
+        "nunomaduro/termwind": "2.0.1",
+        "pestphp/pest": "^2.34",
+        "pestphp/pest-plugin-laravel": "^2.3",
+        "spatie/laravel-ignition": "^2.4"
+
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
@@ -19,6 +49,7 @@
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.0",
         "spatie/laravel-ignition": "^2.0"
+
     },
     "autoload": {
         "psr-4": {
@@ -35,19 +66,39 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi"
+
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
+
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --ansi"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "11.x-dev"
+        },
+
             "@php artisan key:generate --ansi"
         ]
     },
     "extra": {
+
         "laravel": {
             "dont-discover": []
         }
@@ -55,7 +106,15 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
+
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+
         "sort-packages": true
+
     },
     "minimum-stability": "stable",
     "prefer-stable": true

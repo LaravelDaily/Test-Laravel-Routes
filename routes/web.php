@@ -1,5 +1,27 @@
 <?php
 
+<<<<<<< HEAD
+use App\Http\Controllers\TestController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return redirect('/dashboard');
+});
+
+Route::get('/help', function () {
+
+    return view('help');
+});
+
+Route::get('/homeaula', function () {
+
+    return view('homeaula');
+});
+
+//Testa se o Laravel tem permissão para criar arquivos no disco
+Route::get('/test-storage', [TestController::class, 'testStorage']);
+
+=======
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,3 +103,4 @@ use Illuminate\Support\Facades\Route;
 // One more task is in routes/api.php
 
 require __DIR__.'/auth.php';
+>>>>>>> origin/main
