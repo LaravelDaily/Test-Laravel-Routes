@@ -1,7 +1,6 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-<<<<<<< HEAD
     "description": "The skeleton application for the Laravel framework.",
     "keywords": [
         "laravel",
@@ -31,7 +30,7 @@
         "pestphp/pest": "^2.34",
         "pestphp/pest-plugin-laravel": "^2.3",
         "spatie/laravel-ignition": "^2.4"
-=======
+
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
@@ -50,7 +49,7 @@
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.0",
         "spatie/laravel-ignition": "^2.0"
->>>>>>> origin/main
+
     },
     "autoload": {
         "psr-4": {
@@ -67,24 +66,24 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-<<<<<<< HEAD
+
             "@php artisan package:discover --ansi",
             "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
-=======
+
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi"
->>>>>>> origin/main
+
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-<<<<<<< HEAD
+
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --ansi"
@@ -94,12 +93,12 @@
         "branch-alias": {
             "dev-master": "11.x-dev"
         },
-=======
+
             "@php artisan key:generate --ansi"
         ]
     },
     "extra": {
->>>>>>> origin/main
+
         "laravel": {
             "dont-discover": []
         }
@@ -107,15 +106,15 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-<<<<<<< HEAD
+
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
         }
-=======
+
         "sort-packages": true
->>>>>>> origin/main
+
     },
     "minimum-stability": "stable",
     "prefer-stable": true
