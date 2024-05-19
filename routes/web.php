@@ -22,7 +22,9 @@
     
     // Task 1: point the main "/" URL to the HomeController method "index"
     // Put one code line here below
-    Route::get('/', [HomeController::class, 'index']);
+    Route::middleware('auth')->group(function () {
+        Route::get('/', [HomeController::class, 'index']);
+    });
     
     // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
     // It doesn't use Route Model Binding, it expects $name as a parameter
