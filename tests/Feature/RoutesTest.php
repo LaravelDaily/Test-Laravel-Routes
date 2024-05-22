@@ -81,6 +81,7 @@ class RoutesTest extends TestCase
 
         $response = $this->actingAs($user)->get('/api/v1/tasks');
         $response->assertOk();
+        $response->dump();
 
         $response = $this->actingAs($user)->post('/api/v1/tasks', ['name' => 'Test']);
         $response->assertCreated();
