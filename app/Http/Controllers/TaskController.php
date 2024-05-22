@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use view;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
