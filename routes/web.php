@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Admin\DashboardController as adminDashboardController;
-use App\Http\Controllers\Admin\Stats as adminStatsController;
+use App\Http\Controllers\Admin\StatsController as adminStatsController;
 
 /*
 |--------------------------------------------------------------------------
