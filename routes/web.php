@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Admin\StatsController as statsController;
+use App\Http\Controllers\Admin\DashboardController as adminDashboardController;
+use App\Http\Controllers\Admin\StatsController as adminStatsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function () {
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-        Route::resource('/tasks', TaskController::class);
+        Route::resource('tasks', TaskController::class);
         // End of the /app Route Group
     });
 
@@ -74,11 +74,11 @@ Route::middleware(['auth'])->group(function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/dashboard', [AdminDashboardController::class]);
+        Route::get('/dashboard', [adminDashboardController::class]);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('/stats', [statsController::class]);
+        Route::get('/stats', [adminStatsController::class]);
 
         // End of the /admin Route Group
 
