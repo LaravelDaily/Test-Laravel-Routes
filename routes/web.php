@@ -73,11 +73,11 @@ Route::middleware(['auth'])->group(function () {
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-        Route::get('/dashboard', Admin / Dashboard::class)->name('dashboard');
+        Route::get('/dashboard', Admin/Dashboard::class)->name('dashboard');
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-        Route::get('/stats', Admin / StatsController::class)->name('dashboard');
+        Route::get('/stats', Admin/StatsController::class)->name('dashboard');
 
         // End of the /admin Route Group
     });
@@ -85,4 +85,4 @@ Route::middleware(['auth'])->group(function () {
 });
 // One more task is in routes/api.php
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
