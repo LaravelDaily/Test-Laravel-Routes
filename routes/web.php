@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
@@ -66,7 +67,7 @@ Route::middleware(['auth'])->group(function () {
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-    Route::group(['middleware' => 'is_admin', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::group(['middleware' => 'is_admin', 'prefix' => 'admin'], function () {
 
         // Tasks inside that /admin group:
 
