@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin;
 /*
@@ -81,7 +82,7 @@ Route::group(['middleware'=>'auth'],function(){
     // Add a group for routes with URL prefix "admin"
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
-    Route::prefix('admin')->group(function(){
+    Route::prefix('admin')->middleware('is_admin')->group(function(){
 
 
 
