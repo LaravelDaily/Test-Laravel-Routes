@@ -120,5 +120,4 @@ class RoutesTest extends TestCase
         $response = $this->actingAs($admin)->get('/admin/stats');
         $response->assertViewIs('admin.stats');
     }
-
 }
