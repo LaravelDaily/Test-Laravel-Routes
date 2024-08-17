@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IsAdminMiddleware
 {
@@ -16,9 +17,8 @@ class IsAdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        abort_if(!auth()->user()->is_admin, 403);
-        if (!auth()->user()->is_admin) {
-            abort(403);
+        if (!(Auth::check() && Auth::user()->is_admin)) {
+                return redirect('/login');
         }
 
         return $next($request);
