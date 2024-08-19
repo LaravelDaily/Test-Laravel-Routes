@@ -15,21 +15,22 @@ use Illuminate\Support\Facades\Route;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
-
+Route::get("/", [HomeController::class, 'index']);
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
-
+Route::get("/user/{name}", [UserController::class, 'show']);
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-
+Route::view("/about", 'pages/about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
+Route::redirect('log-in', 'login');
 
 
 // Task 5: group the following route sentences below in Route::group()
@@ -72,6 +73,32 @@ use Illuminate\Support\Facades\Route;
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
+    // Main Authenticated Route Group
+Route::group(['middleware' => 'auth'], function () {
+
+    // /app group within the Authenticated group
+    Route::prefix('app')->group(function () {
+
+        // /app/dashboard route
+        Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
+
+        // /app/tasks resource routes
+        Route::resource('tasks', TaskController::class);
+
+    });
+
+    // /admin group within the Authenticated group
+    Route::prefix('admin')->middleware('is_admin')->group(function () {
+
+        // /admin/dashboard route
+        Route::get('/dashboard', [Admin\DashboardController::class, 'show']);
+
+        // /admin/stats route
+        Route::get('/stats', [Admin\StatsController::class, 'show']);
+
+    });
+
+});
 
 
     // End of the /admin Route Group
