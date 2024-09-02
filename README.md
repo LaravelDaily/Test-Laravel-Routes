@@ -33,3 +33,6 @@ This task is mostly self-served, so I'm not planning review or merge the Pull Re
 If you're struggling with some of the tasks, or you have suggestions how to improve the task, create a Github Issue.
 
 Good luck!
+
+## This detailed mind map provides an in-depth overview of Laravel routing
+![LARAVEL ROUTING NOTES](https://github.com/user-attachments/assets/03cfbb0c-2b01-4fe7-a074-8615aff60cdc)
