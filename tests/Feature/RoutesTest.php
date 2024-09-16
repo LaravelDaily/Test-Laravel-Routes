@@ -38,7 +38,6 @@ class RoutesTest extends TestCase
     public function test_about_page_is_loaded()
     {
         $response = $this->get('/about');
-
         $response->assertViewIs('pages.about');
     }
 
