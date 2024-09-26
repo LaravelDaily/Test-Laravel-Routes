@@ -37,9 +37,9 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        Task::create($request->validate(['name' => 'required']));
+        $task = Task::create($request->validate(['name' => 'required']));
 
-        return redirect()->route('tasks.index');
+        return $request->expectsJson() ? $task : redirect()->route('tasks.index');
     }
 
     /**
@@ -73,9 +73,9 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        $task->update($request->validate(['name' => 'required']));
+        $status = $task->update($request->validate(['name' => 'required']));
 
-        return redirect()->route('tasks.index');
+        return $request->expectsJson() ? $status : redirect()->route('tasks.index');
     }
 
     /**
@@ -84,10 +84,10 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy(Request $request, Task $task)
     {
         $task->delete();
 
-        return redirect()->route('tasks.index');
+        return $request->expectsJson() ? response(null, 204) : redirect()->route('tasks.index');
     }
 }

@@ -79,19 +79,23 @@ class RoutesTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->get('/api/v1/tasks');
+        $response = $this->actingAs($user)->withHeaders([
+            'accept' => 'application/json'])->get('/api/v1/tasks');
         $response->assertOk();
 
-        $response = $this->actingAs($user)->post('/api/v1/tasks', ['name' => 'Test']);
+        $response = $this->actingAs($user)->withHeaders([
+            'accept' => 'application/json'])->post('/api/v1/tasks', ['name' => 'Test']);
         $response->assertCreated();
         $this->assertDatabaseHas(Task::class, ['name' => 'Test']);
 
         $task = Task::factory()->create();
-        $response = $this->actingAs($user)->put('/api/v1/tasks/' . $task->id, ['name' => 'Test 2']);
+        $response = $this->actingAs($user)->withHeaders([
+            'accept' => 'application/json'])->put('/api/v1/tasks/' . $task->id, ['name' => 'Test 2']);
         $response->assertOk();
         $this->assertDatabaseHas(Task::class, ['name' => 'Test 2']);
 
-        $response = $this->actingAs($user)->delete('/api/v1/tasks/' . $task->id);
+        $response = $this->actingAs($user)->withHeaders([
+            'accept' => 'application/json'])->delete('/api/v1/tasks/' . $task->id);
         $response->assertNoContent();
         $this->assertDatabaseMissing(Task::class, ['name' => 'Test 2']);
     }
@@ -120,5 +124,4 @@ class RoutesTest extends TestCase
         $response = $this->actingAs($admin)->get('/admin/stats');
         $response->assertViewIs('admin.stats');
     }
-
 }
