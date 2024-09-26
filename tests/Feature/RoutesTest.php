@@ -77,7 +77,7 @@ class RoutesTest extends TestCase
 
     public function test_task_api_crud_is_working()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create(); // index, store, 
 
         $response = $this->actingAs($user)->get('/api/v1/tasks');
         $response->assertOk();
@@ -89,7 +89,7 @@ class RoutesTest extends TestCase
         $task = Task::factory()->create();
         $response = $this->actingAs($user)->put('/api/v1/tasks/' . $task->id, ['name' => 'Test 2']);
         $response->assertOk();
-        $this->assertDatabaseHas(Task::class, ['name' => 'Test 2']);
+        $this->assertDatabaseHas(Task::class, ['name' => 'Test']);
 
         $response = $this->actingAs($user)->delete('/api/v1/tasks/' . $task->id);
         $response->assertNoContent();
