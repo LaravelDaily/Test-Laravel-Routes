@@ -9,5 +9,6 @@ class HomeController extends Controller
         $pageTitle = 'Homepage';
 
         return view('welcome', compact('pageTitle'));
+
     }
 }
