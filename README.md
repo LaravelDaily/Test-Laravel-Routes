@@ -17,7 +17,6 @@ To test if all the routes work correctly, there are PHPUnit tests in `tests/Feat
 In the very beginning, if you run `php artisan test`, or `vendor/bin/phpunit`, all 8 tests fail.
 Your task is to make those tests pass.
 
-
 ## How to Submit Your Solution
 
 If you want to submit your solution, you should make a Pull Request to the `main` branch.
@@ -27,9 +26,12 @@ If you don't know how to make a Pull Request, [here's my video with instructions
 
 This task is mostly self-served, so I'm not planning review or merge the Pull Requests. This test is for yourselves to assess your skills, the automated tests will be your answer if you passed the test :)
 
-
 ## Questions / Problems?
 
 If you're struggling with some of the tasks, or you have suggestions how to improve the task, create a Github Issue.
 
 Good luck!
+
+## My Notes
+
+Thank you Laravel Daily for the free Laravel Learning Roadmap. You can check all the series [here](https://laraveldaily.com/roadmap-learning-path).
