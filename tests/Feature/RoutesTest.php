@@ -12,6 +12,7 @@ class RoutesTest extends TestCase
 {
     use RefreshDatabase;
 
+    //solved
     public function test_home_screen_shows_welcome()
     {
         $response = $this->get('/');
@@ -20,6 +21,8 @@ class RoutesTest extends TestCase
         $response->assertViewHas('pageTitle', 'Homepage');
     }
 
+//     Expected response status code [200] but received 500.
+//     Failed asserting that 200 is identical to 500.
     public function test_user_page_existing_user_found()
     {
         $user = User::factory()->create();
@@ -35,6 +38,8 @@ class RoutesTest extends TestCase
         $response->assertViewIs('users.notfound');
     }
 
+
+    // The response is not a view.
     public function test_about_page_is_loaded()
     {
         $response = $this->get('/about');
@@ -52,6 +57,11 @@ class RoutesTest extends TestCase
     }
 
 
+    //Route [dashboard] not defined. everywhere
+
+
+    //Expected response status code [200] but received 500.
+    // Failed asserting that 200 is identical to 500.
     public function test_task_crud_is_working()
     {
         $user = User::factory()->create();
@@ -75,6 +85,9 @@ class RoutesTest extends TestCase
         $this->assertDatabaseMissing(Task::class, ['name' => 'Test 2']);
     }
 
+
+    //Expected response status code [200] but received 404.
+//Failed asserting that 200 is identical to 404.
     public function test_task_api_crud_is_working()
     {
         $user = User::factory()->create();
@@ -96,6 +109,7 @@ class RoutesTest extends TestCase
         $this->assertDatabaseMissing(Task::class, ['name' => 'Test 2']);
     }
 
+    //The response is not a view.
     public function test_is_admin_middleware_is_working()
     {
         $response = $this->get('/admin/dashboard');
