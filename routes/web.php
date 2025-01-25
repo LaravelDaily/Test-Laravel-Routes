@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\StatsController as AdminStatsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,32 +45,27 @@ Route::redirect('/log-in', '/login');
 // Assign middleware "auth"
 // Put one Route Group code line here below
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('/user/{$name}', [UserController::class, 'show']);
-});
+    
 
     // Tasks inside that Authenticated group:
-
+    Route::get('/user/{$name}', [UserController::class, 'show']);
+    Route::view('/about', 'pages.about')->name('about');
+});
     // Task 6: /app group within a group
     // Add another group for routes with prefix "app"
     // Put one Route Group code line here below
 Route::group(['prefix' => 'app', 'as' => 'app.'], function() {
-    
-});
         // Tasks inside that /app group:
 
 
         // Task 7: point URL /app/dashboard to a "Single Action" DashboardController
         // Assign the route name "dashboard"
         // Put one Route Group code line here below
-Route::group(['prefix' => 'app', 'as' => 'app.'], function() {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
-});
 
         // Task 8: Manage tasks with URL /app/tasks/***.
         // Add ONE line to assign 7 resource routes to TaskController
         // Put one code line here below
-Route::group(['prefix' => 'app', 'as' => 'app.'], function() {
-    Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::resource('tasks', TaskController::class);
 });
     // End of the /app Route Group
@@ -75,23 +76,16 @@ Route::group(['prefix' => 'app', 'as' => 'app.'], function() {
     // Assign middleware called "is_admin" to them
     // Put one Route Group code line here below
 Route::group(['middleware' => 'is_admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
-    
-});
-
         // Tasks inside that /admin group:
 
 
         // Task 10: point URL /admin/dashboard to a "Single Action" Admin/DashboardController
         // Put one code line here below
-Route::group(['middleware' => 'is_admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
-    Route::get('/dashboard', Admin\DashboardController::class);
-});
+    Route::get('/dashboard', AdminDashboardController::class);
 
         // Task 11: point URL /admin/stats to a "Single Action" Admin/StatsController
         // Put one code line here below
-Route::group(['middleware' => 'is_admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
-    Route::get('/dashboard', Admin\DashboardController::class);
-    Route::get('/stats', Admin\StatsController::class);
+    Route::get('/stats', AdminStatsController::class);
 });
 
     // End of the /admin Route Group
