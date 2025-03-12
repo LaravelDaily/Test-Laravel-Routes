@@ -15,22 +15,22 @@ use Illuminate\Support\Facades\Route;
 
 // Task 1: point the main "/" URL to the HomeController method "index"
 // Put one code line here below
-
+Route::get('/', [HomeController::class, 'index']);
 
 // Task 2: point the GET URL "/user/[name]" to the UserController method "show"
 // It doesn't use Route Model Binding, it expects $name as a parameter
 // Put one code line here below
-
+Route::get('/user/{name}', [UserController::class, 'Show']);
 
 // Task 3: point the GET URL "/about" to the view
 // resources/views/pages/about.blade.php - without any controller
 // Also, assign the route name "about"
 // Put one code line here below
-
+Route::view('/about',  'pages.about')-> name('about');
 
 // Task 4: redirect the GET URL "log-in" to a URL "login"
 // Put one code line here below
-
+Route::redirect('/log-in', 'login');
 
 // Task 5: group the following route sentences below in Route::group()
 // Assign middleware "auth"
@@ -77,7 +77,17 @@ use Illuminate\Support\Facades\Route;
     // End of the /admin Route Group
 
 // End of the main Authenticated Route Group
+Route::group(['middleware' => 'auth'], function () { #Task 5
+    Route::group(['prefix' => 'app'], function () { #Task 6
+        Route::get(name: 'dashboard', controller: 'DashboardController')->only(['index']); #Task 7
+        Route::resource(name: 'tasks', controller: 'TaskController'); #Task 8
+    });
 
+    Route::group(['middleware' => 'is_admin', 'prefix' => 'admin', 'namespace' => 'Admin'], function () { #Task 9
+        Route::resource(name: 'dashboard', controller: 'DashboardController')->only(['index']); #Task 10
+        Route::resource(name: 'stats', controller: 'StatsController')->only(['index']); #Task 11
+    });
+});
 // One more task is in routes/api.php
 
 require __DIR__.'/auth.php';
