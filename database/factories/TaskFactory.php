@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\User;
 use App\Models\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +22,11 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->text(20),
+            'user_id' => User::factory(),
+            'name' => fake()->text(20),
+            'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
+            'updated_at' => fake()->dateTimeBetween('-1 year', 'now'),
+
         ];
     }
 }

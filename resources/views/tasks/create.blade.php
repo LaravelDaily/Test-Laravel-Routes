@@ -13,18 +13,12 @@
                     <x-auth-validation-errors class="mb-4" :errors="$errors"/>
 
                     <form action="{{ route('tasks.store') }}" method="POST">
-                        @csrf
-
-                        <div>
-                            <x-label for="name" :value="__('Name')"/>
-
-                            <x-input id="name" class="block mt-1 w-full" type="text" name="name"
-                                     :value="old('name')" required/>
-                        </div>
-
-                        <x-button class="mt-4">
-                            {{ __('Submit') }}
-                        </x-button>
+                    @csrf
+                    <div>
+                        <x-label for="name" :value="__('Name')"/>
+                        <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required/>
+                    </div>
+                    <x-button class="mt-4">{{ __('Submit') }}</x-button>
                     </form>
                 </div>
             </div>
