@@ -78,6 +78,7 @@ class RoutesTest extends TestCase
     public function test_task_api_crud_is_working()
     {
         $user = User::factory()->create();
+        $this->actingAs($user, 'api');
 
         $response = $this->actingAs($user)->get('/api/v1/tasks');
         $response->assertOk();
