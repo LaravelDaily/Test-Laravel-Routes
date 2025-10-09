@@ -18,10 +18,16 @@ class TaskController extends Controller
         return Task::all();
     }
 
-    public function store(Request $request)
-    {
-        return Task::create($request->validate(['name' => 'required']));
-    }
+   public function store(Request $request)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+    ]);
+
+    $task = Task::create($validated);
+
+    return response()->json($task, 201); 
+}
 
     /**
      * Display the specified resource.

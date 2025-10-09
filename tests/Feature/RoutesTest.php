@@ -4,8 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class RoutesTest extends TestCase
@@ -51,7 +51,6 @@ class RoutesTest extends TestCase
         $response->assertRedirect('/login');
     }
 
-
     public function test_task_crud_is_working()
     {
         $user = User::factory()->create();
@@ -79,19 +78,23 @@ class RoutesTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->get('/api/v1/tasks');
+        // Sanctum authentication for API routes
+        Sanctum::actingAs($user);
+
+        // Use JSON requests for API
+        $response = $this->getJson('/api/v1/tasks');
         $response->assertOk();
 
-        $response = $this->actingAs($user)->post('/api/v1/tasks', ['name' => 'Test']);
+        $response = $this->postJson('/api/v1/tasks', ['name' => 'Test']);
         $response->assertCreated();
         $this->assertDatabaseHas(Task::class, ['name' => 'Test']);
 
         $task = Task::factory()->create();
-        $response = $this->actingAs($user)->put('/api/v1/tasks/' . $task->id, ['name' => 'Test 2']);
+        $response = $this->putJson("/api/v1/tasks/{$task->id}", ['name' => 'Test 2']);
         $response->assertOk();
         $this->assertDatabaseHas(Task::class, ['name' => 'Test 2']);
 
-        $response = $this->actingAs($user)->delete('/api/v1/tasks/' . $task->id);
+        $response = $this->deleteJson("/api/v1/tasks/{$task->id}");
         $response->assertNoContent();
         $this->assertDatabaseMissing(Task::class, ['name' => 'Test 2']);
     }
@@ -120,5 +123,4 @@ class RoutesTest extends TestCase
         $response = $this->actingAs($admin)->get('/admin/stats');
         $response->assertViewIs('admin.stats');
     }
-
 }
