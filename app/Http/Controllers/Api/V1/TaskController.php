@@ -26,7 +26,7 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Task  $task
+     * @param  Task  $task
      * @return \Illuminate\Http\Response
      */
     public function show(Task $task)
@@ -37,8 +37,8 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Task  $task
+     * @param  Request  $request
+     * @param  Task  $task
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Task $task)
@@ -49,7 +49,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Task  $task
+     * @param  Task  $task
      * @return \Illuminate\Http\Response
      */
     public function destroy(Task $task)
